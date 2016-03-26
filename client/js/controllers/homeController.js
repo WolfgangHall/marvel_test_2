@@ -1,3 +1,3 @@
-app.controller('homeController', ['$scope', function($scope){
+angular.module('chatApp').controller('homeController', ['$scope', function($scope){
   $scope.title = 'homepage';
 }]);
