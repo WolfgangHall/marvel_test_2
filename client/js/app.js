@@ -1,4 +1,4 @@
-var app = angular.module('chatApp', [
+angular.module('chatApp', [
   'ui.router',
   'ng-Animate',
   'ui.bootstrap',
