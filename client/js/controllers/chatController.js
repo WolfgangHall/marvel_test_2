@@ -39,12 +39,12 @@ angular.module('chatApp').controller('chatController', ['$scope', 'Socket', func
 
   Socket.on('add-user', function(data) {
     $scope.users.push(data.username);
-    $scope.messages.push({username: data.username, message: 'has entered the room'});
+    $scope.messages.push({username: data.username, message: 'has arrived'});
   });
 
   Socket.on('remove-user', function(data){
     $scope.users.splice($scope.users.indexOf(data.username),1);
-    $scope.messages.push({username: data.username, message: 'has left the room'});
+    $scope.messages.push({username: data.username, message: 'has left the building'});
   });
 
   Socket.on('prompt-username', function(data){
