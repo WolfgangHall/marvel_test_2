@@ -8,7 +8,7 @@ angular.module('chatApp').controller('chatController', ['$scope', 'Socket', func
 
   var promptUsername = function(message) {
     bootbox.prompt(message, function(name){
-      if (name != '') {
+      if (name != '' && name != null) {
         Socket.emit('add-user', {username: name});
       } else {
         promptUsername("You must enter a username!");
