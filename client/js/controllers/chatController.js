@@ -5,23 +5,27 @@ angular.module('chatApp').controller('chatController', ['$scope', 'Socket', func
 
   $scope.messages = [];
 
+
   var promptUsername = function(message) {
     bootbox.prompt(message, function(name){
-      if (name != null) {
-        Socket.emit('add-user', {username: name})
+      if (name != '') {
+        Socket.emit('add-user', {username: name});
       } else {
         promptUsername("You must enter a username!");
       }
     })
   }
 
+  promptUsername("What is your name?");
+
   $scope.sendMessage = function(msg) {
-    if(msg != null && msg != '') 
+    if(msg != null && msg != '') {
       Socket.emit('message', {message:msg})
+    } else {
+      bootbox.alert("You cannot leave an empty message");
+    }
     $scope.msg = '';
   }
-
-  promptUsername("What is your name?");
 
   Socket.emit('request-users', {});
 
@@ -45,7 +49,7 @@ angular.module('chatApp').controller('chatController', ['$scope', 'Socket', func
 
   Socket.on('prompt-username', function(data){
     promptUsername(data.message);
-  });
+  });  
 
   $scope.$on('$locationChangeStart', function(event){
     Socket.disconnect(true);
