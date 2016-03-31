@@ -1,5 +1,5 @@
-var mongoose = require('mongoose'),
-  Schema = mongoose.Schema;
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
   var db = mongoose.connection;
 
@@ -10,7 +10,6 @@ var mongoose = require('mongoose'),
     console.log('Mongoose connection successful.');
   });
 
-
   var UserSchema = new Schema({
     created: {
       type: Date,
@@ -18,13 +17,7 @@ var mongoose = require('mongoose'),
     },
     username : {
       type: String,
-      trim: true,
-      required: true
-    },
-    password: {
-      type: String,
-      trim: true,
-      required: true
+      trim: true
     }
   });
 
