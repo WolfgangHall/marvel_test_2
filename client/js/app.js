@@ -1,24 +1,30 @@
-var app = angular.module('chatApp', [
+angular.module('chatApp', [
   'ui.router',
-  'ng-Animate',
-  'ui.bootstrap',
-  'btford-socket.io'])
+  'btford.socket-io'])
 .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider){
     $urlRouterProvider.otherwise('/home');
 
     $stateProvider
       .state('home', {
         url: '/home',
-        templateUrl: '../partials/partial-home.html',
+        templateUrl: 'partials/partial-home.html',
         controller: 'homeController'
       })
 
       .state('chat', {
         url: '/chat',
-        templateUrl: '../partials/partial-chatroom.html',
+        templateUrl: 'partials/partial-chatroom.html',
         controller: 'chatController'
+      })
+
+      .state('register', {
+        url: '/register',
+        templateUrl: 'partials/partial-register.html',
+        controller: 'registerController',
+        controllerAs: 'register'
       })
 
 
   $locationProvider.html5Mode(true);
 }]);
+

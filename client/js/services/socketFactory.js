@@ -1,3 +1,4 @@
-app.factory('Socket', ['socketFactory', function(socketFactory){
-  return socketFactory();
+angular.module('chatApp')
+  .factory('Socket', ['socketFactory', function(socketFactory){
+    return socketFactory();
 }]);

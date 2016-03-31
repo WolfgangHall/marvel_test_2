@@ -5,23 +5,27 @@ angular.module('chatApp').controller('chatController', ['$scope', 'Socket', func
 
   $scope.messages = [];
 
+
   var promptUsername = function(message) {
     bootbox.prompt(message, function(name){
-      if (name != null) {
-        Socket.emit('add-user', {username: name})
+      if (name != '' && name != null) {
+        Socket.emit('add-user', {username: name});
       } else {
         promptUsername("You must enter a username!");
       }
     })
   }
 
+  promptUsername("What is your name?");
+
   $scope.sendMessage = function(msg) {
-    if(msg != null && msg != '') 
+    if(msg != null && msg != '' && msg.length <= 30) {
       Socket.emit('message', {message:msg})
+    } else {
+      bootbox.alert("You cannot leave an empty message and it must be less than 30 characters");
+    }
     $scope.msg = '';
   }
-
-  promptUsername("What is your name?");
 
   Socket.emit('request-users', {});
 
@@ -35,17 +39,17 @@ angular.module('chatApp').controller('chatController', ['$scope', 'Socket', func
 
   Socket.on('add-user', function(data) {
     $scope.users.push(data.username);
-    $scope.messages.push({username: data.username, message: 'has entered the room'});
+    $scope.messages.push({username: data.username, message: 'has arrived'});
   });
 
   Socket.on('remove-user', function(data){
     $scope.users.splice($scope.users.indexOf(data.username),1);
-    $scope.messages.push({username: data.username, message: 'has left the room'});
+    $scope.messages.push({username: data.username, message: 'has left the building'});
   });
 
   Socket.on('prompt-username', function(data){
     promptUsername(data.message);
-  });
+  });  
 
   $scope.$on('$locationChangeStart', function(event){
     Socket.disconnect(true);
