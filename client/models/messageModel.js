@@ -10,21 +10,20 @@ var Schema = mongoose.Schema;
     console.log('Mongoose connection successful.');
   });
 
-  var UserSchema = new Schema({
+  var MessageSchema = new Schema({
     created: {
       type: Date,
       default: Date.now()
     },
-    username : {
+    message : {
       type: String,
-      trim: true,
-      
+      trim: true
     },
-    messages : {
-      type: Schema.Types.ObjectId,
-      ref: 'Message'
+    username: {
+      type: String,
+      trim: true
     }
   });
 
-var User = mongoose.model('User', UserSchema);
-module.exports = User;
+var Message = mongoose.model('User', MessageSchema);
+module.exports = Message;
