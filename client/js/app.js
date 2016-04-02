@@ -2,7 +2,7 @@ angular.module('chatApp', [
   'ui.router',
   'btford.socket-io'])
 .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider){
-    $urlRouterProvider.otherwise('/home');
+    // $urlRouterProvider.otherwise('/home');
 
     $stateProvider
       .state('home', {
