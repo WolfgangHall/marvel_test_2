@@ -9,7 +9,7 @@ angular.module('chatApp').controller('registerController', ['$scope', function($
       password: vm.userData.password,
       email: vm.userData.email
     });
-
-    vm.userData = {};
-  }
+      console.log(vm.userData);
+    
+  };
 }]);
