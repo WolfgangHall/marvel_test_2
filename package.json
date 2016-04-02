@@ -1,7 +1,6 @@
 {
   "name": "socketio",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,5 +13,14 @@
     "mongoose": "^4.4.10",
     "morgan": "^1.7.0",
     "socket.io": "^1.4.5"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WolfgangHall/associate-me-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/WolfgangHall/associate-me-app/issues"
+  },
+  "homepage": "https://github.com/WolfgangHall/associate-me-app#readme",
+  "description": ""
 }
