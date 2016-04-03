@@ -21,6 +21,10 @@ var bcrypt = require('bcryptjs')
       trim: true,
       unique: true
     },
+    messages : {
+      type: Schema.Types.ObjectId,
+      ref: 'Message'
+    },
     firstName: String,
     lastName: String,
     email: String,

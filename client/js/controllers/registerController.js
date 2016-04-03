@@ -7,16 +7,13 @@ angular.module('chatApp').controller('registerController', ['$scope', function($
   
   $scope.userData = {};
 
-  $scope.addUser = function() {
-    $scope.users.push({
-      username: $scope.userData.username,
-      password: $scope.userData.password,
-      email: $scope.userData.email
-    });
-
-    $scope.userData = {};
-  };
-  
-};
+    $scope.register = function(){
+      var data = {
+        username: $scope.username,
+        password: $scope.password,
+        email: $scope.email
+      }
+      console.log(data);
+    };
 
 }]);
