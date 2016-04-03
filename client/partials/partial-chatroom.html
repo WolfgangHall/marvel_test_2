@@ -1,32 +1,32 @@
-<h2>Chatroom</h2>
-
-<div class="container">
+<!-- <h2>Chatroom</h2>
+ -->
+<div class="container col-md-6 col-md-offset-2">
   <div class="row">
-    <div class="col-md-6 chat-window" id="chatHistory">
+    <div class="chat-window" id="chatHistory">
       <ul>
-        <li ng-repeat="message in messages" id="messages">
+        <li ng-repeat="message in messages" id="chatMessages">
           <span  class="username">{{message.username}}:</span>
           <span class="message">{{message.message}}</span>
         </li>
       </ul>
     </div>
-    <div class="col-md-2 user-window">
-      <ul>
-        <li ng-repeat="user in users">{{user}}</li>
-      </ul>
+  </div>
+  <div class="container-fluid">
+    <div class="row" id="sendField">
+      <form>
+        <div class="col-md-9">
+          <input type="text" class="form-control" id="chatInput" placeholder="Enter text here..." ng-model="msg"></input>
+        </div>
+        <div>
+          <button type="submit" class="btn btn-primary" ng-click="sendMessage(msg)">Send Message</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
 
-<div class="container" id="sendMessage">
-  <div class="row">
-    <form>
-      <!-- <div> -->
-        <input type="text" class="form-control" id="chatInput" placeholder="Enter text here..." ng-model="msg"></input>
-      <!-- </div> -->
-      <!-- <div> -->
-        <button type="submit" class="btn btn-primary" ng-click="sendMessage(msg)">Send Message</button>
-      <!-- </div> -->
-    </form>
-  </div>
+<div class="col-md-2 col-md-offset-8 user-window">
+  <ul>
+    <li ng-repeat="user in users">{{user}}</li>
+  </ul>
 </div>
