@@ -1,3 +1,27 @@
 body {
   margin-top: 50px;
 }
+
+#chatHistory {
+  border-style: solid;
+  border-color: black;
+  float:middle;
+  height:50%;
+  width:50%; 
+  padding:3px;
+  background-color: black;
+  opacity: 0.8;
+
+}
+
+#messages{
+  color: #c4c4c4;
+  overflow:auto;
+}
+
+#sendMessage{
+  position:relative;
+  bottom:0;
+  height: 50%;
+  width:50%; 
+}

@@ -45,10 +45,10 @@ io.on('connection', function(socket){
       });
       username = data.username;
       users.push(data.username);
-      User.save(function(err){
-        if (err) throw err;
-        console.log('user saved to db');
-      });
+      // User.save(function(err){
+      //   if (err) throw err;
+      //   console.log('user saved to db');
+      // });
     } else {
       socket.emit('prompt-username', {
         message : "User already exists"
