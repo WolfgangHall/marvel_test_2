@@ -1,11 +1,4 @@
-angular.module('chatApp').controller('registerController', ['$scope', function($scope){
-    $scope.submitForm = function(isValid) {
-  //   if (isValid) {
-  //     alert('our form is amazing');
-  //   }
-  // };
-  
-  $scope.userData = {};
+angular.module('chatApp').controller('registerController', ['$scope','$http', function($scope, $http){
 
     $scope.register = function(){
       var data = {
@@ -14,8 +7,13 @@ angular.module('chatApp').controller('registerController', ['$scope', function($
         email: $scope.email
       };
       console.log(data);
-    };
-
+  $http({
+      method: "POST",
+      url: "/register",
+      data:data
+    }).then(function(result){
+        console.log(result);
+    });
+  
   };
-
 }]);

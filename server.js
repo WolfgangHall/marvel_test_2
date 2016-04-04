@@ -41,7 +41,7 @@ app.use(express.static('client'));
 
 var users = [];
 
-app.get('*', function(req, res){
+app.get('/*', function(req, res){
   res.sendFile(process.cwd() +'/client/views/index.html');
 });
 
@@ -77,12 +77,12 @@ io.on('connection', function(socket){
     console.log(data);
     io.emit('message', {username: username, message: data.message});
 
-    var newMessage = new Message({message: data.message, username: username, date: Date.now()});
-    console.log(newMessage);
-    newMessage.save(function(err){
-      if (err) throw err;
-      console.log('new message saved');
-    });
+    // var newMessage = new Message({message: data.message, username: username, date: Date.now()});
+    // console.log(newMessage);
+    // newMessage.save(function(err){
+    //   if (err) throw err;
+    //   console.log('new message saved');
+    // });
   });
 
   socket.on('disconnect', function(data){
@@ -97,6 +97,19 @@ app.post('/upload', uploading.single('image'), function(req, res) {
   res.status(204).end(); 
 });
 
+app.post('/register', function(req, res, next){
+  var newUser = new User(req.body);
+  newUser.save(function(err, newUser){
+    if (err){
+      console.log(err);
+      res.send(err);
+    } else {
+      // console.log('trying to save');
+      console.log(newUser);
+      res.send(newUser);
+    }
+  });
+});
 
 http.listen(port, function(){
   console.log("Magic on Port " + port);
