@@ -16,7 +16,8 @@ app.use(function(req, res, next) {
 });
 
 var mongoose = require('mongoose');
-var Message = require('./client/models/userModel.js');
+// var User = require('./client/models/userModel.js');
+var Message = require('./client/models/messageModel.js');
 mongoose.connect('mongodb://localhost/userRegistration');
 
 app.use(logger('dev'));
@@ -46,6 +47,8 @@ io.on('connection', function(socket){
       username = data.username;
       users.push(data.username);
       // User.save(function(err){
+      // var newUser = new User({username : data.username});
+      // newUser.save(function(err){
       //   if (err) throw err;
       //   console.log('user saved to db');
       // });
@@ -59,8 +62,13 @@ io.on('connection', function(socket){
   socket.on('message', function(data){
     console.log(data);
     io.emit('message', {username: username, message: data.message});
-    console.log(data.message);
-    console.log(username);
+
+    var newMessage = new Message({message: data.message, username: username, date: Date.now()});
+    console.log(newMessage);
+    newMessage.save(function(err){
+      if (err) throw err;
+      console.log('new message saved');
+    });
   });
 
   socket.on('disconnect', function(data){

@@ -1,15 +1,19 @@
 angular.module('chatApp').controller('registerController', ['$scope', function($scope){
-  var vm = this;
+    $scope.submitForm = function(isValid) {
+  //   if (isValid) {
+  //     alert('our form is amazing');
+  //   }
+  // };
+  
+  $scope.userData = {};
 
-  vm.userData = {};
+    $scope.register = function(){
+      var data = {
+        username: $scope.username,
+        password: $scope.password,
+        email: $scope.email
+      }
+      console.log(data);
+    };
 
-  vm.addUser = function() {
-    vm.users.push({
-      username: vm.userData.username,
-      password: vm.userData.password,
-      email: vm.userData.email
-    });
-
-    vm.userData = {};
-  }
 }]);
