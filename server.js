@@ -46,9 +46,8 @@ io.on('connection', function(socket){
       });
       username = data.username;
       users.push(data.username);
-
+      // User.save(function(err){
       // var newUser = new User({username : data.username});
-
       // newUser.save(function(err){
       //   if (err) throw err;
       //   console.log('user saved to db');
