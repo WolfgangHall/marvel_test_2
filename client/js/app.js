@@ -28,6 +28,12 @@ angular.module('chatApp', [
         templateUrl: 'partials/partial-register.html',
         controller: 'registerController',
         controllerAs: 'register'
+      })
+
+      .state('userProfile', {
+        url: '/upload',
+        templateUrl: 'partials/partial-userProfile.html',
+        controller: 'userProfileController'
       });
 
 

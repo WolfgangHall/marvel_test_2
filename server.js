@@ -2,11 +2,24 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-
-
+var router = express.Router();
+var path = require('path');
 var logger = require('morgan');
 
 var port = process.env.PORT || 8080;
+var multer = require('multer');
+var crypto = require('crypto');
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, __dirname+ '/client/uploads/');
+  },
+  filename: function (req, file, cb) {
+    crypto.pseudoRandomBytes(16, function (err, raw) {
+      cb(null, raw.toString('hex') + path.extname(file.originalname));
+    });
+  }
+});
+var uploading = multer({ storage: storage });
 
 app.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -20,6 +33,7 @@ var mongoose = require('mongoose');
 var Message = require('./client/models/messageModel.js');
 mongoose.connect('mongodb://localhost/userRegistration');
 
+app.use('/', router);
 app.use(logger('dev'));
 
 app.use(express.static('client'));
@@ -55,7 +69,7 @@ io.on('connection', function(socket){
     } else {
       socket.emit('prompt-username', {
         message : "User already exists"
-      })
+      });
     }
   });
 
@@ -79,6 +93,9 @@ io.on('connection', function(socket){
 });
 
 
+app.post('/upload', uploading.single('image'), function(req, res) { 
+  res.status(204).end(); 
+});
 
 
 http.listen(port, function(){

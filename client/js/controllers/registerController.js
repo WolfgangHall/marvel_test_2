@@ -12,8 +12,10 @@ angular.module('chatApp').controller('registerController', ['$scope', function($
         username: $scope.username,
         password: $scope.password,
         email: $scope.email
-      }
+      };
       console.log(data);
     };
+
+  };
 
 }]);
