@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var bcrypt = require('bcryptjs')
 
   var db = mongoose.connection;
 
@@ -19,6 +20,10 @@ var Schema = mongoose.Schema;
       type: String,
       trim: true,
       unique: true
+    },
+    messages : {
+      type: Schema.Types.ObjectId,
+      ref: 'Message'
     },
     firstName: String,
     lastName: String,
@@ -40,12 +45,12 @@ userSchema.pre("save", function(next){
     bcrypt.hash(user.password, salt, function(err, hash) {
 
       //override cleartext password with hashed password
-      user.password = hash'
+      user.password = hash;
       next();
     });
   });
 });
 
-var User = mongoose.model('User', UserSchema);
+var User = mongoose.model('User', userSchema);
 
 module.exports = User;

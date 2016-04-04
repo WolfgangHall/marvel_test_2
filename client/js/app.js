@@ -2,7 +2,7 @@ angular.module('chatApp', [
   'ui.router',
   'btford.socket-io'])
 .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider){
-    $urlRouterProvider.otherwise('/home');
+    // $urlRouterProvider.otherwise('/home');
 
     $stateProvider
       .state('home', {
@@ -27,7 +27,13 @@ angular.module('chatApp', [
         url: '/register',
         templateUrl: 'partials/partial-register.html',
         controller: 'registerController',
-        controllerAs: 'register'
+        // controllerAs: 'register'
+      })
+
+      .state('userProfile', {
+        url: '/upload',
+        templateUrl: 'partials/partial-userProfile.html',
+        controller: 'userProfileController'
       });
 
 
