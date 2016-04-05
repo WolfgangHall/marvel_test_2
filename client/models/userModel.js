@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var bcrypt = require('bcryptjs')
+var bcrypt = require('bcryptjs');
 
   var db = mongoose.connection;
 
@@ -21,12 +21,12 @@ var bcrypt = require('bcryptjs')
       trim: true,
       unique: true
     },
-    messages : {
-      type: Schema.Types.ObjectId,
-      ref: 'Message'
-    },
-    firstName: String,
-    lastName: String,
+    // messages : {
+    //   type: Schema.Types.ObjectId,
+    //   ref: 'Message'
+    // },
+    // firstName: String,
+    // lastName: String,
     email: String,
     password: String
   });
