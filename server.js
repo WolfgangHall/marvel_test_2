@@ -29,8 +29,8 @@ app.use(function(req, res, next) {
 });
 
 var mongoose = require('mongoose');
-// var User = require('./client/models/userModel.js');
-var Message = require('./client/models/messageModel.js');
+var User = require('./client/models/userModel.js');
+// var Message = require('./client/models/messageModel.js');
 mongoose.connect('mongodb://localhost/userRegistration');
 
 app.use('/', router);
