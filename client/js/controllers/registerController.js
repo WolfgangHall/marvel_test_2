@@ -1,5 +1,12 @@
 angular.module('chatApp').controller('registerController', ['$scope','$http', function($scope, $http){
 
+
+    $scope.submitForm = function(isValid) {
+      if (isValid){
+        $("#myModal").modal();
+      }
+    };
+
     $scope.register = function(){
       var data = {
         username: $scope.username,
