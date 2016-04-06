@@ -12,19 +12,19 @@ var bcrypt = require('bcryptjs')
   });
 
   var userSchema = new Schema({
-    created: {
-      type: Date,
-      default: Date.now()
-    },
     username : {
       type: String,
       trim: true,
       unique: true
     },
-    messages : {
-      type: Schema.Types.ObjectId,
-      ref: 'Message'
+    created: {
+      type: Date,
+      default: Date.now()
     },
+    // messages : {
+    //   type: Schema.Types.ObjectId,
+    //   ref: 'Message'
+    // },
     firstName: String,
     lastName: String,
     email: String,
@@ -54,3 +54,4 @@ userSchema.pre("save", function(next){
 var User = mongoose.model('User', userSchema);
 
 module.exports = User;
+
