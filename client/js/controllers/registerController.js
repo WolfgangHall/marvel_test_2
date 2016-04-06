@@ -1,15 +1,26 @@
-angular.module('chatApp').controller('registerController', ['$scope', function($scope){
-  var vm = this;
+angular.module('chatApp').controller('registerController', ['$scope','$http', function($scope, $http){
 
-  vm.userData = {};
 
-  vm.addUser = function() {
-    vm.users.push({
-      username: vm.userData.username,
-      password: vm.userData.password,
-      email: vm.userData.email
+    $scope.submitForm = function(isValid) {
+      if (isValid){
+        $("#myModal").modal();
+      }
+    };
+
+    $scope.register = function(){
+      var data = {
+        username: $scope.username,
+        password: $scope.password,
+        email: $scope.email
+      };
+      console.log(data);
+  $http({
+      method: "POST",
+      url: "/register",
+      data:data
+    }).then(function(result){
+        console.log(result);
     });
-
-    vm.userData = {};
-  }
+  
+  };
 }]);

@@ -2,11 +2,25 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-
-
+var router = express.Router();
+var path = require('path');
 var logger = require('morgan');
-
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
 var port = process.env.PORT || 8080;
+var multer = require('multer');
+var crypto = require('crypto');
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, __dirname+ '/client/uploads/');
+  },
+  filename: function (req, file, cb) {
+    crypto.pseudoRandomBytes(16, function (err, raw) {
+      cb(null, raw.toString('hex') + path.extname(file.originalname));
+    });
+  }
+});
+var uploading = multer({ storage: storage });
 
 app.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -16,9 +30,11 @@ app.use(function(req, res, next) {
 });
 
 var mongoose = require('mongoose');
-var Message = require('./client/models/userModel.js');
+var User = require('./client/models/userModel.js');
+// var Message = require('./client/models/messageModel.js');
 mongoose.connect('mongodb://localhost/userRegistration');
 
+app.use('/', router);
 app.use(logger('dev'));
 
 app.use(express.static('client'));
@@ -26,7 +42,7 @@ app.use(express.static('client'));
 
 var users = [];
 
-app.get('*', function(req, res){
+app.get('/*', function(req, res){
   res.sendFile(process.cwd() +'/client/views/index.html');
 });
 
@@ -45,22 +61,29 @@ io.on('connection', function(socket){
       });
       username = data.username;
       users.push(data.username);
-      User.save(function(err){
-        if (err) throw err;
-        console.log('user saved to db');
-      });
+      // User.save(function(err){
+      // var newUser = new User({username : data.username});
+      // newUser.save(function(err){
+      //   if (err) throw err;
+      //   console.log('user saved to db');
+      // });
     } else {
       socket.emit('prompt-username', {
         message : "User already exists"
-      })
+      });
     }
   });
 
   socket.on('message', function(data){
     console.log(data);
     io.emit('message', {username: username, message: data.message});
-    console.log(data.message);
-    console.log(username);
+
+    // var newMessage = new Message({message: data.message, username: username, date: Date.now()});
+    // console.log(newMessage);
+    // newMessage.save(function(err){
+    //   if (err) throw err;
+    //   console.log('new message saved');
+    // });
   });
 
   socket.on('disconnect', function(data){
@@ -71,7 +94,23 @@ io.on('connection', function(socket){
 });
 
 
+app.post('/upload', uploading.single('image'), function(req, res) { 
+  res.status(204).end(); 
+});
 
+app.post('/register', function(req, res, next){
+  var newUser = new User(req.body);
+  newUser.save(function(err, newUser){
+    if (err){
+      console.log(err);
+      res.send(err);
+    } else {
+      // console.log('trying to save');
+      console.log(newUser);
+      res.send(newUser);
+    }
+  });
+});
 
 http.listen(port, function(){
   console.log("Magic on Port " + port);

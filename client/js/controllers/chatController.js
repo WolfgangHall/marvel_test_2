@@ -19,10 +19,10 @@ angular.module('chatApp').controller('chatController', ['$scope', 'Socket', func
   promptUsername("What is your name?");
 
   $scope.sendMessage = function(msg) {
-    if(msg != null && msg != '' && msg.length <= 30) {
+    if(msg != null && msg != '' && msg.length <= 140) {
       Socket.emit('message', {message:msg})
     } else {
-      bootbox.alert("You cannot leave an empty message and it must be less than 30 characters");
+      bootbox.alert("You cannot leave an empty message and it must be less than 140 characters");
     }
     $scope.msg = '';
   }
