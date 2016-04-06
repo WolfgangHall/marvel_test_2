@@ -5,7 +5,8 @@ var io = require('socket.io')(http);
 var router = express.Router();
 var path = require('path');
 var logger = require('morgan');
-
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
 var port = process.env.PORT || 8080;
 var multer = require('multer');
 var crypto = require('crypto');
