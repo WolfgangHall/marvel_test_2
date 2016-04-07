@@ -10,6 +10,14 @@ app.use(bodyParser.json());
 var port = process.env.PORT || 8080;
 var multer = require('multer');
 var crypto = require('crypto');
+var expressSession = require('express-session');
+var passport = require('passport');
+
+var mongoose = require('mongoose');
+var User = require('./client/models/userModel.js');
+// var Message = require('./client/models/messageModel.js');
+mongoose.connect('mongodb://localhost/userRegistration');
+
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, __dirname+ '/client/uploads/');
@@ -29,14 +37,22 @@ app.use(function(req, res, next) {
   next();
 });
 
-var mongoose = require('mongoose');
-var User = require('./client/models/userModel.js');
-// var Message = require('./client/models/messageModel.js');
-mongoose.connect('mongodb://localhost/userRegistration');
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(expressSession({
+    secret: 'quackbird noodletown',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 14
+    }
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 app.use('/', router);
 app.use(logger('dev'));
-
 app.use(express.static('client'));
 
 
@@ -111,6 +127,53 @@ app.post('/register', function(req, res, next){
     }
   });
 });
+
+// app.post('/login', function(req, res, next){
+//   User.findOne({
+//     "email": req.body.email
+//   }).exec(function(err,user){
+//     if (err) {
+//       res.send(err);
+//     }
+//     if(!user){
+//       console.log('no user found');
+//     } else {
+//       if (user.password === req.body.password){
+//         console.log('welcome, user');
+//     } else {
+//       console.log ('creds dont work');
+//     }
+//     console.log(user);
+//     res.send(user);
+//     }
+//   });
+// });
+
+app.post('/login', function(req, res){
+  User.findOne({ email: req.body.email }, function(err, user){
+    if(err) throw err;
+
+    
+    if(!user){
+      console.log('user does not exist');
+      res.send(err);
+      }else{
+      console.log('user exists');
+      console.log(user);
+      console.log(user.password);
+      console.log(req.body.password);
+      if(user.password === req.body.password){
+        console.log('welcome');
+      }else{
+        console.log('Credentials do not work.');
+        res.send(err);
+      }
+    }
+  });
+});
+
+
+
 
 http.listen(port, function(){
   console.log("Magic on Port " + port);
