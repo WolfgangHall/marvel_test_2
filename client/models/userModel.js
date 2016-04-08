@@ -31,25 +31,25 @@ var bcrypt = require('bcryptjs');
     password: String
   });
 
-// userSchema.pre("save", function(next){
-//   var user = this;
+userSchema.pre("save", function(next){
+  var user = this;
 
-//   //will only hash the password if it is new or has been modified
-//   if(!user.isModified("password")) return next();
+  //will only hash the password if it is new or has been modified
+  if(!user.isModified("password")) return next();
 
-//   //salt generation
-//   bcrypt.genSalt(10, function(err, salt) {
-//     if (err) return next(err);
+  //salt generation
+  bcrypt.genSalt(10, function(err, salt) {
+    if (err) return next(err);
 
-//     //hash password with salt
-//     bcrypt.hash(user.password, salt, function(err, hash) {
+    //hash password with salt
+    bcrypt.hash(user.password, salt, function(err, hash) {
 
-//       //override cleartext password with hashed password
-//       user.password = hash;
-//       next();
-//     });
-//   });
-// });
+      //override cleartext password with hashed password
+      user.password = hash;
+      next();
+    });
+  });
+});
 
 var User = mongoose.model('User', userSchema);
 

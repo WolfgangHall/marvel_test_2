@@ -5,6 +5,7 @@ var io = require('socket.io')(http);
 var router = express.Router();
 var path = require('path');
 var logger = require('morgan');
+var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 var port = process.env.PORT || 8080;
@@ -12,10 +13,10 @@ var multer = require('multer');
 var crypto = require('crypto');
 var expressSession = require('express-session');
 var passport = require('passport');
-
+// var routes = require('./routes/index')(passport);
 var mongoose = require('mongoose');
 var User = require('./client/models/userModel.js');
-// var Message = require('./client/models/messageModel.js');
+var Message = require('./client/models/messageModel.js');
 mongoose.connect('mongodb://localhost/userRegistration');
 
 var storage = multer.diskStorage({
@@ -30,12 +31,12 @@ var storage = multer.diskStorage({
 });
 var uploading = multer({ storage: storage });
 
-app.use(function(req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
-  next();
-});
+// app.use(function(req, res, next) {
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+//   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
+//   next();
+// });
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(expressSession({
@@ -50,6 +51,15 @@ app.use(expressSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+
+//change the object used to authenticate to a smaller token, and protects the server from attacks
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
 
 app.use('/', router);
 app.use(logger('dev'));
@@ -94,12 +104,12 @@ io.on('connection', function(socket){
     console.log(data);
     io.emit('message', {username: username, message: data.message});
 
-    // var newMessage = new Message({message: data.message, username: username, date: Date.now()});
-    // console.log(newMessage);
-    // newMessage.save(function(err){
-    //   if (err) throw err;
-    //   console.log('new message saved');
-    // });
+     var newMessage = new Message({message: data.message, username: username, date: Date.now()});
+     console.log(newMessage);
+    newMessage.save(function(err){
+      if (err) throw err;
+      console.log('new message saved');
+     });
   });
 
   socket.on('disconnect', function(data){
