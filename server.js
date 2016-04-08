@@ -4,21 +4,30 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var router = express.Router();
 var path = require('path');
-var logger = require('morgan');
+
 var cookieParser = require('cookie-parser');
+
+// Body Parser Setup
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
+
+
 var port = process.env.PORT || 8080;
-var multer = require('multer');
-var crypto = require('crypto');
+
 var expressSession = require('express-session');
 var passport = require('passport');
 // var routes = require('./routes/index')(passport);
+
+// Database Setup
 var mongoose = require('mongoose');
 var User = require('./client/models/userModel.js');
 var Message = require('./client/models/messageModel.js');
 mongoose.connect('mongodb://localhost/userRegistration');
 
+
+//Requriements for Picture Upload
+var multer = require('multer');
+var crypto = require('crypto');
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, __dirname+ '/client/uploads/');
@@ -61,8 +70,14 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
-app.use('/', router);
+
+
+// Setup for Morgan
+var logger = require('morgan');
 app.use(logger('dev'));
+
+
+app.use('/', router);
 app.use(express.static('client'));
 
 
