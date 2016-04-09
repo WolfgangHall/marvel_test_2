@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
-  $('.carousel').carousel({
+  $('#my-carousel').carousel({
     interval: 500
   });
   
-});
+}); 

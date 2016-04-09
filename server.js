@@ -19,10 +19,14 @@ var passport = require('passport');
 // var routes = require('./routes/index')(passport);
 
 // Database Setup
+var db = require('./config/db');
+
 var mongoose = require('mongoose');
 var User = require('./client/models/userModel.js');
 var Message = require('./client/models/messageModel.js');
 mongoose.connect('mongodb://localhost/userRegistration');
+mongoose.connect(db.url); // connect to our database
+
 
 
 //Requriements for Picture Upload
