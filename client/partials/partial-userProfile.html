@@ -1,7 +1,26 @@
+<div class="container-fluid">
+  <div class="row">
+  <!--Sidebar-->
+    <div class="col-md-4">
+    <!--Profile Picture and user Name-->
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+            <img class="img-circle img-responsive" src="https://s3.amazonaws.com/uifaces/faces/twitter/spiltmilkstudio/128.jpg">
+          </div>
+        </div>
+      </div>
+    <!--End Picture and Name-->
+    <!--Upload Picture-->
+      <form action="/upload" method="POST" enctype="multipart/form-data">
+        Select an image to upload:
+        <input type="file" name="image"> 
+        <input type="submit" value="Upload Image">
+      </form>
+    <!--End Upload Picture-->
+    </div>
+  <!--End Sidebar-->  
+  </div>
+</div>
 
 
-<form action="/upload" method="POST" enctype="multipart/form-data">
-  Select an image to upload:
-  <input type="file" name="image"> 
-  <input type="submit" value="Upload Image">
-</form>

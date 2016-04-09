@@ -58,3 +58,8 @@ img.make-it-fit {
     max-width: 99%;
     max-height: 99%;
 }
+
+/*.thumbnail {
+  max-height: 500px;
+  max-width: 500px;
+}*/
