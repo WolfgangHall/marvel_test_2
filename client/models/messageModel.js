@@ -25,5 +25,5 @@ var Schema = mongoose.Schema;
     }
   });
 
-var Message = mongoose.model('User', MessageSchema);
+var Message = mongoose.model('Message', MessageSchema);
 module.exports = Message;
