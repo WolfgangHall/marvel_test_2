@@ -13,6 +13,13 @@ body {
   bottom:0;
 }
 
+#userList{
+  height: 400px;
+  background-color: gray;
+  opacity: 0.8;
+  color: black; 
+}
+
 #chatMessages{
   color: #c4c4c4;
   overflow:auto;
