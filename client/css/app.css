@@ -2,7 +2,7 @@ body {
   margin-top: 50px;
 }
 
-#chatHistory {
+#chat-history {
   height:400px;
   width:100%; 
   background-color: black;
@@ -13,22 +13,17 @@ body {
   bottom:0;
 }
 
-#userList{
+#user-list{
   height: 400px;
-  background-color: gray;
+  background-color: #0E1C36;
   opacity: 0.8;
-  color: black; 
+  color: #AFCBFF; 
 }
 
-#chatMessages{
+#chat-messages{
   color: #c4c4c4;
   overflow:auto;
   position: bottom; 
-}
-
-#sendField{
-  height: 100%;
-  width:100%; 
 }
 
 .modal-backdrop {
