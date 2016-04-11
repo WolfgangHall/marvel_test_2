@@ -19,7 +19,7 @@ var passport = require('passport');
 // var routes = require('./routes/index')(passport);
 
 // Database Setup
-var db = require('./config/db');
+var db = require('./client/config/config.js');
 
 var mongoose = require('mongoose');
 var User = require('./client/models/userModel.js');
