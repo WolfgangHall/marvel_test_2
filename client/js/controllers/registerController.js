@@ -1,4 +1,4 @@
-angular.module('chatApp').controller('registerController', ['$scope','$http', function($scope, $http){
+angular.module('chatApp').controller('registerController', ['$scope','$http','$location', function($scope, $http, $location){
 
 
   $scope.register = function(){
@@ -11,8 +11,10 @@ angular.module('chatApp').controller('registerController', ['$scope','$http', fu
       $scope.email = '';
       $scope.password = '';
       $scope.username = '';
-      
-      alert('success');
+
+      $location.path('/login');
+
+      bootbox.alert('Sucessfully Registered. Please Log In');
     });
   }
 

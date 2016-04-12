@@ -40,3 +40,10 @@ angular.module('chatApp', [
   $locationProvider.html5Mode(true);
 }]);
 
+angular.module('chatApp').run(function($rootScope, $cookies){
+  if($cookies.get('token') && $cookies.get('currentUser')){
+    $rootScope.token = $cookies.get('token');
+    $rootScope.currentUserEmail = $cookies.get('currentUserEmail');
+  }
+});
+

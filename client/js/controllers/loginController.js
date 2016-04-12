@@ -1,4 +1,4 @@
-angular.module('chatApp').controller('loginController', ['$scope', '$http', '$rootScope', '$cookies', function($scope, $http, $rootScope, $cookies){
+angular.module('chatApp').controller('loginController', ['$scope', '$http', '$rootScope', '$cookies', '$location', function($scope, $http, $rootScope, $cookies, $location){
   
   $scope.login = function(){
     $http.put('/users/login', {email: $scope.email, password: $scope.password})
@@ -10,9 +10,12 @@ angular.module('chatApp').controller('loginController', ['$scope', '$http', '$ro
 
         $scope.email = '';
         $scope.password = '';
-        alert('successful sign in');
+        
+        bootbox.alert('Successfully Logged In!');
+        
+        $location.path('/upload');
       }, function(err){
-        alert('bad login cred');
+        bootbox.alert('Bad Login Credentials!');
       });
   }
 
