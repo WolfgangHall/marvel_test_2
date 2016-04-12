@@ -5,6 +5,8 @@ var io = require('socket.io')(http);
 var router = express.Router();
 var path = require('path');
 var bcrypt = require('bcryptjs');
+var jwt = require('jwt-simple');
+var JWT_SECRET = 'themanwhosoldtheworld';
 
 // var cookieParser = require('cookie-parser');
 
@@ -114,6 +116,20 @@ app.post('/users/register', function(req, res){
 
         return res.send();
       })
+    })
+  })
+})
+
+app.put('/users/login', function(req, res, next){
+
+  User.findOne({email: req.body.email}, function(err, user){
+    bcrypt.compare(req.body.password, user.password, function(err, result){
+      if (result){
+        var token = jwt.encode(user, JWT_SECRET);
+        return res.json({token : token});
+      } else {
+        return res.status(400).send();
+      }
     })
   })
 })
