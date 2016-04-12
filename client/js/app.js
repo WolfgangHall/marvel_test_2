@@ -26,8 +26,7 @@ angular.module('chatApp', [
       .state('register', {
         url: '/register',
         templateUrl: 'partials/partial-register.html',
-        controller: 'registerController',
-        // controllerAs: 'register'
+        controller: 'registerController'
       })
 
       .state('userProfile', {

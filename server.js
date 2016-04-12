@@ -4,8 +4,9 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var router = express.Router();
 var path = require('path');
+var bcrypt = require('bcryptjs');
 
-var cookieParser = require('cookie-parser');
+// var cookieParser = require('cookie-parser');
 
 // Body Parser Setup
 var bodyParser = require('body-parser');
@@ -14,15 +15,26 @@ app.use(bodyParser.json());
 
 var port = process.env.PORT || 8080;
 
-var expressSession = require('express-session');
-var passport = require('passport');
+// var expressSession = require('express-session');
+// var passport = require('passport');
 // var routes = require('./routes/index')(passport);
 
 // Database Setup
 var mongoose = require('mongoose');
-var User = require('./client/models/userModel.js');
-var Message = require('./client/models/messageModel.js');
+
 mongoose.connect('mongodb://localhost/userRegistration');
+
+var db = mongoose.connection;
+
+db.on('error', function(err) {
+  console.log('Mongoose Error: ', err);
+});
+db.once('open', function() {
+  console.log('Mongoose connection successful.');
+});
+
+var User = require('./server/models/userModel.js');
+var Message = require('./server/models/messageModel.js');
 
 
 //Requriements for Picture Upload
@@ -40,35 +52,35 @@ var storage = multer.diskStorage({
 });
 var uploading = multer({ storage: storage });
 
-// app.use(function(req, res, next) {
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
-//   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
-//   next();
-// });
+app.use(function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
+  next();
+});
 
-app.use(bodyParser.urlencoded({extended:false}));
-app.use(expressSession({
-    secret: 'quackbird noodletown',
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-        maxAge: 1000 * 60 * 60 * 24 * 14
-    }
-}));
+// app.use(bodyParser.urlencoded({extended:false}));
+// app.use(expressSession({
+//     secret: 'quackbird noodletown',
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: {
+//         maxAge: 1000 * 60 * 60 * 24 * 14
+//     }
+// }));
 
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 
 
 //change the object used to authenticate to a smaller token, and protects the server from attacks
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-passport.deserializeUser(function(user, done) {
-  done(null, user);
-});
+// passport.serializeUser(function(user, done) {
+//   done(null, user);
+// });
+// passport.deserializeUser(function(user, done) {
+//   done(null, user);
+// });
 
 
 
@@ -77,7 +89,7 @@ var logger = require('morgan');
 app.use(logger('dev'));
 
 
-app.use('/', router);
+// app.use('/', router);
 app.use(express.static('client'));
 
 
@@ -86,6 +98,25 @@ var users = [];
 app.get('/*', function(req, res){
   res.sendFile(process.cwd() +'/client/views/index.html');
 });
+
+app.post('/users/register', function(req, res){
+
+  bcrypt.genSalt(10, function(err, salt){
+    bcrypt.hash(req.body.password, salt, function(err, hash){
+      var user = new User({
+        email: req.body.email,
+        password: hash,
+        username: req.body.username
+      });
+
+      user.save(function(err){
+        if (err) res.send(err);
+
+        return res.send();
+      })
+    })
+  })
+})
 
 io.on('connection', function(socket){
   var username = '';
@@ -139,19 +170,19 @@ app.post('/upload', uploading.single('image'), function(req, res) {
   res.status(204).end(); 
 });
 
-app.post('/register', function(req, res, next){
-  var newUser = new User(req.body);
-  newUser.save(function(err, newUser){
-    if (err){
-      console.log(err);
-      res.send(err);
-    } else {
-      // console.log('trying to save');
-      console.log(newUser);
-      res.send(newUser);
-    }
-  });
-});
+// app.post('/register', function(req, res, next){
+//   var newUser = new User(req.body);
+//   newUser.save(function(err, newUser){
+//     if (err){
+//       console.log(err);
+//       res.send(err);
+//     } else {
+//       // console.log('trying to save');
+//       console.log(newUser);
+//       res.send(newUser);
+//     }
+//   });
+// });
 
 // app.post('/login', function(req, res, next){
 //   User.findOne({
@@ -174,28 +205,28 @@ app.post('/register', function(req, res, next){
 //   });
 // });
 
-app.post('/login', function(req, res){
-  User.findOne({ email: req.body.email }, function(err, user){
-    if(err) throw err;
+// app.post('/login', function(req, res){
+//   User.findOne({ email: req.body.email }, function(err, user){
+//     if(err) throw err;
 
     
-    if(!user){
-      console.log('user does not exist');
-      res.send(err);
-      }else{
-      console.log('user exists');
-      console.log(user);
-      console.log(user.password);
-      console.log(req.body.password);
-      if(user.password === req.body.password){
-        console.log('welcome');
-      }else{
-        console.log('Credentials do not work.');
-        res.send(err);
-      }
-    }
-  });
-});
+//     if(!user){
+//       console.log('user does not exist');
+//       res.send(err);
+//       }else{
+//       console.log('user exists');
+//       console.log(user);
+//       console.log(user.password);
+//       console.log(req.body.password);
+//       if(user.password === req.body.password){
+//         console.log('welcome');
+//       }else{
+//         console.log('Credentials do not work.');
+//         res.send(err);
+//       }
+//     }
+//   });
+// });
 
 
 
