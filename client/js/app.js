@@ -1,8 +1,9 @@
 angular.module('chatApp', [
   'ui.router',
-  'btford.socket-io'])
+  'btford.socket-io',
+  'ngCookies'])
 .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider){
-    // $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/home');
 
     $stateProvider
       .state('home', {
@@ -26,8 +27,7 @@ angular.module('chatApp', [
       .state('register', {
         url: '/register',
         templateUrl: 'partials/partial-register.html',
-        controller: 'registerController',
-        // controllerAs: 'register'
+        controller: 'registerController'
       })
 
       .state('userProfile', {
@@ -39,4 +39,11 @@ angular.module('chatApp', [
 
   $locationProvider.html5Mode(true);
 }]);
+
+angular.module('chatApp').run(function($rootScope, $cookies){
+  if($cookies.get('token') && $cookies.get('currentUser')){
+    $rootScope.token = $cookies.get('token');
+    $rootScope.currentUserEmail = $cookies.get('currentUserEmail');
+  }
+});
 
