@@ -1,4 +1,4 @@
-angular.module('chatApp', [])
+angular.module('chatApp')
   .controller('logoutController', function($rootScope, $scope, $http, $cookies){
     $scope.logout = function(){
       $cookies.remove('token');

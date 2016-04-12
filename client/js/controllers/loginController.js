@@ -7,6 +7,9 @@ angular.module('chatApp').controller('loginController', ['$scope', '$http', '$ro
         $cookies.put('currentUserEmail', $scope.email);
         $rootScope.token = res.data.token;
         $rootScope.currentUserEmail = $scope.email;
+
+        $scope.email = '';
+        $scope.password = '';
         alert('successful sign in');
       }, function(err){
         alert('bad login cred');

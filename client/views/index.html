@@ -43,6 +43,7 @@
           <li ng-class="{active: isActive('/register')}"><a href="/register">Register</a></li>
           <li ng-class="{active: isActive('/login')}"><a href="/login">Login</a></li>
           <li ng-class="{active: isActive('/upload')}"><a href="/upload">Your Profile</a></li>
+          <li ng-show='currentUserEmail' ng-controller='logoutController' ng-click='logout()'><a href="#">Logout</a></li>
         </ul>
       </div><!--/.nav-collapse -->
     </div>
@@ -68,6 +69,7 @@
   <script src="../js/controllers/registerController.js"></script>
   <script src="../js/controllers/chatController.js"></script>
   <script src="../js/controllers/loginController.js"></script>
+  <script src="../js/controllers/logoutController.js"></script>
   <script src="../js/controllers/userProfileController.js"></script>
   <script src="../js/services/socketFactory.js"></script>
   <script src="../js/custom/home.js"></script>

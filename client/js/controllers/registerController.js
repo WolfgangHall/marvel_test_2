@@ -8,6 +8,10 @@ angular.module('chatApp').controller('registerController', ['$scope','$http', fu
       username: $scope.username
     };
     $http.post('/users/register', newUser).then(function(){
+      $scope.email = '';
+      $scope.password = '';
+      $scope.username = '';
+      
       alert('success');
     });
   }
