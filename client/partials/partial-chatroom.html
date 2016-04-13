@@ -1,8 +1,16 @@
-<h2>Chatroom</h2>
+    <script>
+      var socket = io.connect('http://localhost:8080/chat');
+    </script>
+
+<h2>Chatroom 1</h2>
 
 <div class="container-fluid">
   <div class="row">
+<<<<<<< HEAD
     <div class="col-md-10 chat-window" id="chat-history">
+=======
+    <div class="chat-window" id="chat-history" schroll-bottom='messages'>
+>>>>>>> f482b3e49f27fd262b1be5fdcbf52056737141cf
       <ul>
         <li ng-repeat="message in messages" id="chat-messages">
           <span  class="username">{{message.username}}:</span>

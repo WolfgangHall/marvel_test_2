@@ -50,7 +50,7 @@ angular.module('chatApp', [
 angular.module('chatApp').run(function($rootScope, $cookies){
   if($cookies.get('token') && $cookies.get('currentUser')){
     $rootScope.token = $cookies.get('token');
-    $rootScope.currentUserEmail = $cookies.get('currentUserEmail');
+    $rootScope.currentUser = $cookies.get('currentUser');
   }
 });
 

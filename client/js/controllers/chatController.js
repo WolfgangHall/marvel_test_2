@@ -1,4 +1,4 @@
-angular.module('chatApp').controller('chatController', ['$scope', 'Socket', function($scope, Socket){
+angular.module('chatApp').controller('chatController', ['$scope', 'Socket','$cookies', '$rootScope', function($scope, Socket, $cookies, $rootScope){
   Socket.connect();
 
   $scope.users = [];
@@ -6,26 +6,36 @@ angular.module('chatApp').controller('chatController', ['$scope', 'Socket', func
   $scope.messages = [];
 
 
-  var promptUsername = function(message) {
-    bootbox.prompt(message, function(name){
-      if (name != '' && name != null) {
-        Socket.emit('add-user', {username: name});
+  // var promptUsername = function(message) {
+  //   bootbox.prompt(message, function(name){
+  //     if (name != '' && name != null) {
+  //       Socket.emit('add-user', {username: name});
+  //     } else {
+  //       promptUsername("You must enter a username!");
+  //     }
+  //   })
+  // }
+
+  // promptUsername("What is your name?");
+
+  if($cookies.get('token') && $cookies.get('currentUser')){
+    console.log($cookies.get('currentUser'));
+    Socket.emit('add-user', {username: $rootScope.currentUser});
+  } else {
+    bootbox.alert('You need to sign in to chat');
+  }
+
+  if($cookies.get('token')){
+    $scope.sendMessage = function(msg) {
+      if(msg != null && msg != '' && msg.length <= 140) {
+        Socket.emit('message', {message:msg})
       } else {
-        promptUsername("You must enter a username!");
+        bootbox.alert("You cannot leave an empty message and it must be less than 140 characters");
       }
-    })
-  }
-
-  promptUsername("What is your name?");
-
-  $scope.sendMessage = function(msg) {
-    if(msg != null && msg != '' && msg.length <= 140) {
-      Socket.emit('message', {message:msg})
-    } else {
-      bootbox.alert("You cannot leave an empty message and it must be less than 140 characters");
+      $scope.msg = '';
     }
-    $scope.msg = '';
   }
+
 
   Socket.emit('request-users', {});
 
@@ -47,9 +57,9 @@ angular.module('chatApp').controller('chatController', ['$scope', 'Socket', func
     $scope.messages.push({username: data.username, message: 'has left the building'});
   });
 
-  Socket.on('prompt-username', function(data){
-    promptUsername(data.message);
-  });  
+  // Socket.on('prompt-username', function(data){
+  //   promptUsername(data.message);
+  // });  
 
   $scope.$on('$locationChangeStart', function(event){
     Socket.disconnect(true);
