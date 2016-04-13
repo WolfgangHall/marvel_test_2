@@ -124,14 +124,17 @@ app.post('/upload', uploading.single('image'), function(req, res) {
 
 io.on('connection', function(socket){
 
-  var rooms = ['bio', 'chem', 'phy'];
-  var randRoom = rooms[Math.floor(Math.random() * rooms.length)];
-
-  socket.join(randRoom);
 
   var users = [];
   var username = '';
+  var room = '';
   console.log('a user has connected');
+
+
+  socket.on('join-room', function(data){
+    socket.join(data.room);
+    room = data.room;
+  });
 
 
   socket.on('request-users', function(){
@@ -142,7 +145,7 @@ io.on('connection', function(socket){
 
 
     if(users.indexOf(data.username) == -1){
-      io.to(randRoom).emit('add-user', {
+      io.to(room).emit('add-user', {
         username: data.username
       });
       username = data.username;
@@ -156,7 +159,7 @@ io.on('connection', function(socket){
 
   socket.on('message', function(data){
     console.log(data);
-    io.to(randRoom).emit('message', {username: username, message: data.message});
+    io.to(room).emit('message', {username: username, message: data.message});
 
     var newMessage = new Message({message: data.message, username: username, created: Date.now()});
     console.log(newMessage);
@@ -170,7 +173,7 @@ io.on('connection', function(socket){
   socket.on('disconnect', function(data){
     console.log(username + ' has disconnected');
     users.splice(users.indexOf(username), 1);
-    io.to(randRoom).emit('remove-user', {username: username});
+    io.to(room).emit('remove-user', {username: username});
   });
 });
 

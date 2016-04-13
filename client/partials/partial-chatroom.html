@@ -1,7 +1,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
 
 
-<h2>Chatroom</h2>
+<h2>{{room}} Chatroom</h2>
 
 <div class="container col-md-10">
   <div class="row">
@@ -18,7 +18,7 @@
 
 <div class="col-md-2" id="user-list">
   <ul>
-    <li ng-repeat="user in users">{{user}}</li>
+    <li ng-repeat="user in users track by $index">{{user}}</li>
   </ul>
 </div>
 

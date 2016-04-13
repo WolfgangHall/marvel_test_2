@@ -1,9 +1,17 @@
-angular.module('chatApp').controller('chatController', ['$scope', 'Socket','$cookies', '$rootScope', function($scope, Socket, $cookies, $rootScope){
+angular.module('chatApp').controller('chatController', ['$scope', 'Socket','$cookies', '$rootScope', '$stateParams', function($scope, Socket, $cookies, $rootScope, $stateParams){
   Socket.connect();
+
+  $scope.room = $stateParams.room;
+
+
+
+  Socket.emit('join-room', {room:$stateParams.room}); 
+  console.log($stateParams.room);
 
   $scope.users = [];
 
   $scope.messages = [];
+
 
 
 
@@ -28,9 +36,13 @@ angular.module('chatApp').controller('chatController', ['$scope', 'Socket','$coo
 
   Socket.emit('request-users', {});
 
+
+
   Socket.on('users', function(data){
     $scope.users = data.users;
   });
+
+
 
   Socket.on('message', function(data) {
     $scope.messages.push(data);
