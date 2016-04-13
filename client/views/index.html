@@ -44,6 +44,7 @@
           <li ng-class="{active: isActive('/register')}"><a href="/register">Register</a></li>
           <li ng-class="{active: isActive('/login')}"><a href="/login">Login</a></li>
           <li ng-class="{active: isActive('/upload')}"><a href="/upload">Your Profile</a></li>
+          <li ng-show='currentUserEmail' ng-controller='logoutController' ng-click='logout()'><a href="#">Logout</a></li>
         </ul>
       </div><!--/.nav-collapse -->
     </div>
@@ -60,6 +61,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.2/angular.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.2/angular-cookies.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.2.5/ui-bootstrap.min.js"></script>
   <script type="text/javascript" src="../libs/socket.js"></script>
 
@@ -68,6 +70,7 @@
   <script src="../js/controllers/registerController.js"></script>
   <script src="../js/controllers/chatController.js"></script>
   <script src="../js/controllers/loginController.js"></script>
+  <script src="../js/controllers/logoutController.js"></script>
   <script src="../js/controllers/userProfileController.js"></script>
   <script src="../js/controllers/roomsController.js"></script>
   <script src="../js/services/socketFactory.js"></script>
