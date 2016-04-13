@@ -6,17 +6,6 @@ angular.module('chatApp').controller('chatController', ['$scope', 'Socket','$coo
   $scope.messages = [];
 
 
-  // var promptUsername = function(message) {
-  //   bootbox.prompt(message, function(name){
-  //     if (name != '' && name != null) {
-  //       Socket.emit('add-user', {username: name});
-  //     } else {
-  //       promptUsername("You must enter a username!");
-  //     }
-  //   })
-  // }
-
-  // promptUsername("What is your name?");
 
   if($cookies.get('token') && $cookies.get('currentUser')){
     console.log($cookies.get('currentUser'));
@@ -57,9 +46,6 @@ angular.module('chatApp').controller('chatController', ['$scope', 'Socket','$coo
     $scope.messages.push({username: data.username, message: 'has left the building'});
   });
 
-  // Socket.on('prompt-username', function(data){
-  //   promptUsername(data.message);
-  // });  
 
   $scope.$on('$locationChangeStart', function(event){
     Socket.disconnect(true);

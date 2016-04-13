@@ -71,7 +71,6 @@ app.use(logger('dev'));
 // app.use('/', router);
 app.use(express.static('client'));
 
-
 //catchall route
 app.get('/*', function(req, res){
   res.sendFile(process.cwd() +'/client/views/index.html');
@@ -121,19 +120,19 @@ app.post('/upload', uploading.single('image'), function(req, res) {
 });
 
 
-var users = [];
+// var bio = io.of('/bio');
 
 io.on('connection', function(socket){
+
+  var rooms = ['bio', 'chem', 'phy'];
+  var randRoom = rooms[Math.floor(Math.random() * rooms.length)];
+
+  socket.join(randRoom);
+
+  var users = [];
   var username = '';
   console.log('a user has connected');
 
-  var defaultRoom = 'general';
-  var rooms = ['General','angular', 'express'];
-
-
-  socket.emit('setup', {
-    rooms: rooms
-  });
 
   socket.on('request-users', function(){
     socket.emit('users', {users: users});
@@ -141,12 +140,9 @@ io.on('connection', function(socket){
 
   socket.on('add-user', function(data){
 
-    data.room = defaultRoom;
-
-    socket.join(defaultRoom);
 
     if(users.indexOf(data.username) == -1){
-      io.emit('add-user', {
+      io.to(randRoom).emit('add-user', {
         username: data.username
       });
       username = data.username;
@@ -160,10 +156,11 @@ io.on('connection', function(socket){
 
   socket.on('message', function(data){
     console.log(data);
-    io.emit('message', {username: username, message: data.message});
+    io.to(randRoom).emit('message', {username: username, message: data.message});
 
-     var newMessage = new Message({message: data.message, username: username, created: Date.now()});
-     console.log(newMessage);
+    var newMessage = new Message({message: data.message, username: username, created: Date.now()});
+    console.log(newMessage);
+
     newMessage.save(function(err){
       if (err) throw err;
       console.log('new message saved');
@@ -173,7 +170,7 @@ io.on('connection', function(socket){
   socket.on('disconnect', function(data){
     console.log(username + ' has disconnected');
     users.splice(users.indexOf(username), 1);
-    io.emit('remove-user', {username: username});
+    io.to(randRoom).emit('remove-user', {username: username});
   });
 });
 
