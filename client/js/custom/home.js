@@ -1,7 +1,3 @@
 $(document).ready(function(){
-
-  $('#my-carousel').carousel({
-    interval: 500
-  });
-  
+    $("#sticker").sticky({topSpacing:0});
 }); 

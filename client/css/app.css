@@ -3,7 +3,7 @@ body {
 }
 
 #chat-history {
-  height:80vh;
+  height:20vh;
   background-color: black;
   opacity: 0.8;
   position: relative;
@@ -13,7 +13,7 @@ body {
 }
 
 #user-list{
-  height: 80vh;
+  height: 20vh;
   background-color: #0E1C36;
   opacity: 0.8;
   color: #AFCBFF; 
