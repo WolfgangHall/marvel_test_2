@@ -1,14 +1,14 @@
 angular.module('chatApp').controller('loginController', ['$scope', '$http', '$rootScope', '$cookies', '$location', function($scope, $http, $rootScope, $cookies, $location){
   
   $scope.login = function(){
-    $http.put('/users/login', {email: $scope.email, password: $scope.password})
+    $http.put('/users/login', {username: $scope.username, password: $scope.password})
       .then(function(res){
         $cookies.put('token', res.data.token);
-        $cookies.put('currentUserEmail', $scope.email);
+        $cookies.put('currentUser', $scope.username);
         $rootScope.token = res.data.token;
-        $rootScope.currentUserEmail = $scope.email;
+        $rootScope.currentUser = $scope.username;
 
-        $scope.email = '';
+        $scope.username = '';
         $scope.password = '';
         
         bootbox.alert('Successfully Logged In!');

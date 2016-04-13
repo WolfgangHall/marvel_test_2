@@ -103,7 +103,7 @@ app.post('/users/register', function(req, res){
 //login route
 app.put('/users/login', function(req, res, next){
 
-  User.findOne({email: req.body.email}, function(err, user){
+  User.findOne({username: req.body.username}, function(err, user){
     bcrypt.compare(req.body.password, user.password, function(err, result){
       if (result){
         var token = jwt.encode(user, JWT_SECRET);
@@ -127,11 +127,24 @@ io.on('connection', function(socket){
   var username = '';
   console.log('a user has connected');
 
+  var defaultRoom = 'general';
+  var rooms = ['General','angular', 'express'];
+
+
+  socket.emit('setup', {
+    rooms: rooms
+  });
+
   socket.on('request-users', function(){
     socket.emit('users', {users: users});
   });
 
   socket.on('add-user', function(data){
+
+    data.room = defaultRoom;
+
+    socket.join(defaultRoom);
+
     if(users.indexOf(data.username) == -1){
       io.emit('add-user', {
         username: data.username
