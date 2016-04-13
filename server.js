@@ -162,7 +162,7 @@ io.on('connection', function(socket){
     console.log(data);
     io.emit('message', {username: username, message: data.message});
 
-     var newMessage = new Message({message: data.message, username: username, date: Date.now()});
+     var newMessage = new Message({message: data.message, username: username, created: Date.now()});
      console.log(newMessage);
     newMessage.save(function(err){
       if (err) throw err;
