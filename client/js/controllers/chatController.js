@@ -22,17 +22,20 @@ angular.module('chatApp').controller('chatController', ['$scope', 'Socket','$coo
     console.log($cookies.get('currentUser'));
     Socket.emit('add-user', {username: $rootScope.currentUser});
   } else {
-    bootbox.alert('You need to sign in');
+    bootbox.alert('You need to sign in to chat');
   }
 
-  $scope.sendMessage = function(msg) {
-    if(msg != null && msg != '' && msg.length <= 140) {
-      Socket.emit('message', {message:msg})
-    } else {
-      bootbox.alert("You cannot leave an empty message and it must be less than 140 characters");
+  if($cookies.get('token')){
+    $scope.sendMessage = function(msg) {
+      if(msg != null && msg != '' && msg.length <= 140) {
+        Socket.emit('message', {message:msg})
+      } else {
+        bootbox.alert("You cannot leave an empty message and it must be less than 140 characters");
+      }
+      $scope.msg = '';
     }
-    $scope.msg = '';
   }
+
 
   Socket.emit('request-users', {});
 
