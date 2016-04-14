@@ -20,7 +20,7 @@ var port = process.env.PORT || 8080;
 
 
 // Database Setup
-// var db = require('./client/config/config.js');
+var db = require('./client/config/config.js');
 
 var mongoose = require('mongoose');
 
