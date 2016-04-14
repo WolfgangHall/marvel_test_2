@@ -33,7 +33,7 @@ angular.module('chatApp', [
       .state('rooms', {
         url: '/rooms',
         templateUrl: 'partials/partial-rooms.html',
-        controller: 'roomsController',
+        controller: 'roomController',
       })
 
       .state('userProfile', {
