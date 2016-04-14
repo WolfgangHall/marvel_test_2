@@ -1,10 +1,30 @@
-<!-- idea to create a list of rooms and ng-repeat them
-each repeated room will have a state param of their room name
-set the state param to the $scope.room
-socket.emit the $scope.room to the server
-pass the room into the io.of  -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-content">
+          <p ng-model="roomName" class="roomCard">{{roomName}}</p>
+        </div>
+        <div class="card-action">
+        <a class="btn sharp btn-block" href="/chat/{{roomName}}">Join {{roomName}} Chat Room</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-content">
+          <p ng-model="roomName" class="roomCard">{{roomName2}}</p>
+        </div>
+        <div class="card-action">
+          <a href="/chat/{{roomName2}}" class="btn sharp btn-block">Join {{roomName2}} Chat Room</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<div class="row container">
+
+<!-- <div class="row container">
   <div class="col-md-4">
     <div class="panel panel-default">
       <div class="panel-heading">{{roomName}}</div>
@@ -22,4 +42,4 @@ pass the room into the io.of  -->
       </div>
     </div>
   </div>
-</div>
+</div> -->
