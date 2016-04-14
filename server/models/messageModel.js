@@ -14,6 +14,10 @@ var Schema = mongoose.Schema;
     username: {
       type: String,
       trim: true
+    },
+    room: {
+      type: String,
+      trim: true
     }
   });
 

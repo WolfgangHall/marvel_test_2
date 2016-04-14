@@ -1,16 +1,11 @@
-    <script>
-      var socket = io.connect('http://localhost:8080/chat');
-    </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
 
-<h2>Chatroom 1</h2>
+
+<h2>{{room}} Chatroom</h2>
 
 <div class="container-fluid">
   <div class="row">
-<<<<<<< HEAD
-    <div class="col-md-10 chat-window" id="chat-history">
-=======
-    <div class="chat-window" id="chat-history" schroll-bottom='messages'>
->>>>>>> f482b3e49f27fd262b1be5fdcbf52056737141cf
+    <div class="chat-window col-md-10" id="chat-history" schroll-bottom='messages'>
       <ul>
         <li ng-repeat="message in messages" id="chat-messages">
           <span  class="username">{{message.username}}:</span>
@@ -20,19 +15,18 @@
     </div>
     <div class="col-md-2" id="user-list">
       <ul>
-        <li ng-repeat="user in users">{{user}}</li>
+        <li ng-repeat="user in users track by $index">{{user}}</li>
       </ul>
       <div class="fixed"></div>
     </div>
   </div>
   <form>
-  <div class="row">
-    <div class="col-md-10 text-box">
-    <input type="text" class="form-control sharp" placeholder="Enter text here..." ng-model="msg">
-    </div>
-    <div class="col-md-2 text-box">
-      <button type="submit" class="btn btn-block sharp" style="" ng-click="sendMessage(msg)">Send Message</button>
-    </div>
-  </form>
+    <div class="row">
+      <div class="col-md-10 text-box">
+        <input type="text" class="form-control sharp" placeholder="Enter text here..." ng-model="msg">
+      </div>
+      <div class="col-md-2 text-box">
+        <button type="submit" class="btn btn-block sharp" style="" ng-click="sendMessage(msg)">Send Message</button>
+      </div>
+    </form>
   </div>
-</div>

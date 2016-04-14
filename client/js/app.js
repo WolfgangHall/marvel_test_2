@@ -13,7 +13,7 @@ angular.module('chatApp', [
       })
 
       .state('chat', {
-        url: '/chat',
+        url: '/chat/:room',
         templateUrl: 'partials/partial-chatroom.html',
         controller: 'chatController'
       })
@@ -34,7 +34,6 @@ angular.module('chatApp', [
         url: '/rooms',
         templateUrl: 'partials/partial-rooms.html',
         controller: 'roomsController',
-        // controllerAs: 'register'
       })
 
       .state('userProfile', {

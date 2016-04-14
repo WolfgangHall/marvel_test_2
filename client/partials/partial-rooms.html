@@ -1,18 +1,25 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-image">
-                    <img class="img-responsive" src="...">
-                    <span class="card-title">Material Cards</span>
-                </div>
-                <div class="card-content">
-                    <p ng-model="roomName">Basketball</p>
-                </div>
-                <div class="card-action">
-                    <button class="btn sharp btn-block">Go to Chat</button>
-                </div>
-            </div>
-        </div>
+<!-- idea to create a list of rooms and ng-repeat them
+each repeated room will have a state param of their room name
+set the state param to the $scope.room
+socket.emit the $scope.room to the server
+pass the room into the io.of  -->
+
+<div class="row container">
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">{{roomName}}</div>
+      <div class="panel-body">
+        <a href="/chat/{{roomName}}">Join {{roomName}} Chat Room</a>
+      </div>
     </div>
+  </div>  
+
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">{{roomName2}}</div>
+      <div class="panel-body">
+        <a href="/chat/{{roomName2}}">Join {{roomName2}} Chat Room</a>
+      </div>
+    </div>
+  </div>
 </div>
