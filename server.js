@@ -21,10 +21,10 @@ var port = process.env.PORT || 8080;
 // Database Setup
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/userRegistration');
+// mongoose.connect('mongodb://localhost/userRegistration');
 
-var db = require('./client/config/config.js');
-var mongoose = require('mongoose');
+// var db = require('./client/config/config.js');
+// var mongoose = require('mongoose');
 
 // HEROKU DB
 if(process.env.NODE_ENV === 'production'){
