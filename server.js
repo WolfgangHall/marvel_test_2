@@ -24,8 +24,8 @@ var port = process.env.PORT || 8080;
 
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/userRegistration');
-// mongoose.connect(db.url); // connect to our database
+// mongoose.connect('mongodb://localhost/userRegistration');
+mongoose.connect(db.url); // connect to our database
 
 
 var db = mongoose.connection;
