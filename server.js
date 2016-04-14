@@ -18,11 +18,27 @@ app.use(bodyParser.json());
 
 var port = process.env.PORT || 8080;
 
-
 // Database Setup
 var mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/userRegistration');
+
+var db = require('./client/config/config.js');
+var mongoose = require('mongoose');
+
+// HEROKU DB
+if(process.env.NODE_ENV === 'production'){
+console.log(process.env.MONGOLAB_URI);
+mongoose.connect(db.url); // connect to our database
+}
+else {
+  // LOCAL DB
+  console.log("connected locally");
+  mongoose.connect('mongodb://localhost/userRegistration');
+}
+
+
+
 
 var db = mongoose.connection;
 
@@ -172,7 +188,7 @@ io.on('connection', function(socket){
     newMessage.save(function(err){
       if (err) throw err;
       console.log('new message saved');
-     });
+    });
   });
 
   socket.on('disconnect', function(data){
