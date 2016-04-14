@@ -19,6 +19,10 @@ app.use(bodyParser.json());
 var port = process.env.PORT || 8080;
 
 // Database Setup
+var mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost/userRegistration');
+
 var db = require('./client/config/config.js');
 var mongoose = require('mongoose');
 
@@ -32,6 +36,7 @@ else {
   console.log("connected locally");
   mongoose.connect('mongodb://localhost/userRegistration');
 }
+
 
 
 
@@ -114,14 +119,19 @@ app.post('/users/register', function(req, res){
 app.put('/users/login', function(req, res, next){
 
   User.findOne({username: req.body.username}, function(err, user){
-    bcrypt.compare(req.body.password, user.password, function(err, result){
-      if (result){
-        var token = jwt.encode(user, JWT_SECRET);
-        return res.json({token : token});
-      } else {
-        return res.status(400).send();
-      }
-    })
+    if(user){
+      bcrypt.compare(req.body.password, user.password, function(err, result){
+        if (result){
+          var token = jwt.encode(user, JWT_SECRET);
+          return res.json({token : token});
+        } else {
+          return res.json({message: 'error found'});
+        }
+      })
+    } else {
+      res.json(err);
+    }
+
   })
 })
 

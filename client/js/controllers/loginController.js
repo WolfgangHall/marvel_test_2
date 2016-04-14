@@ -13,7 +13,7 @@ angular.module('chatApp').controller('loginController', ['$scope', '$http', '$ro
         
         bootbox.alert('Successfully Logged In!');
         
-        $location.path('/upload');
+        $location.path('/home');
         $window.location.reload();
 
       }, function(err){
