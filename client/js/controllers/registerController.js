@@ -1,26 +1,22 @@
-angular.module('chatApp').controller('registerController', ['$scope','$http', function($scope, $http){
+angular.module('chatApp').controller('registerController', ['$scope','$http','$location', function($scope, $http, $location){
 
 
-    $scope.submitForm = function(isValid) {
-      if (isValid){
-        $("#myModal").modal();
-      }
+  $scope.register = function(){
+    var newUser = {
+      email: $scope.email,
+      password: $scope.password,
+      username: $scope.username
     };
+    $http.post('/users/register', newUser).then(function(){
+      $scope.email = '';
+      $scope.password = '';
+      $scope.username = '';
 
-    $scope.register = function(){
-      var data = {
-        username: $scope.username,
-        password: $scope.password,
-        email: $scope.email
-      };
-      console.log(data);
-  $http({
-      method: "POST",
-      url: "/register",
-      data:data
-    }).then(function(result){
-        console.log(result);
+      $location.path('/login');
+
+      bootbox.alert('Sucessfully Registered. Please Log In');
     });
-  
-  };
+  }
+
+
 }]);

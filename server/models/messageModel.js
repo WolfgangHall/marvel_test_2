@@ -1,14 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-  var db = mongoose.connection;
-
-  db.on('error', function(err) {
-    console.log('Mongoose Error: ', err);
-  });
-  db.once('open', function() {
-    console.log('Mongoose connection successful.');
-  });
 
   var MessageSchema = new Schema({
     created: {
@@ -20,6 +12,10 @@ var Schema = mongoose.Schema;
       trim: true
     },
     username: {
+      type: String,
+      trim: true
+    },
+    room: {
       type: String,
       trim: true
     }

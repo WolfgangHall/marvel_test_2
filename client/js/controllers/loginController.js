@@ -1,22 +1,25 @@
-angular.module('chatApp').controller('loginController', ['$scope', '$http', function($scope, $http){
+angular.module('chatApp').controller('loginController', ['$scope', '$http', '$rootScope', '$cookies', '$location', '$window', function($scope, $http, $rootScope, $cookies, $location, $window){
   
-$scope.login = function(){
-  var data = { email: $scope.email, password: $scope.password };
-  console.log(data);
-  $http({
-    method: "POST",
-    url: "/login",
-    data: data
-    
-  }).then(function(result){
-    // console.log(data);
-    // console.log(result);
-    // $scope.loggedIn === true;
-    // $scope.email = result.data.email;
-    // $scope.password = result.data.password;
-    // console.log(result.data.email);
-  });
-};
+  $scope.login = function(){
+    $http.put('/users/login', {username: $scope.username, password: $scope.password})
+      .then(function(res){
+        $cookies.put('token', res.data.token);
+        $cookies.put('currentUser', $scope.username);
+        $rootScope.token = res.data.token;
+        $rootScope.currentUser = $scope.username;
+
+        $scope.username = '';
+        $scope.password = '';
+        
+        bootbox.alert('Successfully Logged In!');
+        
+        $location.path('/upload');
+        $window.location.reload();
+
+      }, function(err){
+        bootbox.alert('Bad Login Credentials!');
+      });
+  }
 
 
 }]);
