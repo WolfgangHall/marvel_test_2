@@ -125,11 +125,11 @@ app.put('/users/login', function(req, res, next){
           var token = jwt.encode(user, JWT_SECRET);
           return res.json({token : token});
         } else {
-          return res.json({message: 'error found'});
+          return res.status(404).json({error: 'Password not found'});
         }
       })
     } else {
-      res.json(err);
+      return res.status(404).json({error: 'User not found'});
     }
 
   })
@@ -159,23 +159,17 @@ io.on('connection', function(socket){
 
 
   socket.on('request-users', function(){
-    socket.emit('users', {users: users});
+    socket.to(room).emit('users', {users: users});
+    console.log(users);
   });
 
   socket.on('add-user', function(data){
 
-
-    if(users.indexOf(data.username) == -1){
       io.to(room).emit('add-user', {
         username: data.username
       });
       username = data.username;
       users.push(data.username);
-    } else {
-      socket.emit('prompt-username', {
-        message : "User already exists"
-      });
-    }
   });
 
   socket.on('message', function(data){
