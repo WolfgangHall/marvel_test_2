@@ -14,8 +14,9 @@
       </ul>
     </div>
     <div class="col-md-2" id="user-list">
+      <p>Number of connected users: {{users.length}}</p>
       <ul>
-        <li ng-repeat="user in users">{{user}}</li>
+        <li ng-repeat="user in users track by $index">{{user}}</li>
       </ul>
       <div class="fixed"></div>
     </div>
