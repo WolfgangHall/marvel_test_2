@@ -15,6 +15,11 @@ body {
   margin-top: 40px;
 }
 
+.navName{
+  padding-top: 15px;
+  font-size: 120%;
+}
+
 a {
   color: black;
   font-size: 120%;
@@ -43,6 +48,14 @@ a:active{
 #registerPage{
   height: 95vh;
   background-image: url('https://images.unsplash.com/photo-1417514645232-3042464af1da?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=d80eb9924bebaca87ecf93b6dc50bcbf');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#roomsPage{
+  height: 95vh;
+  background-image: url('https://images.unsplash.com/photo-1434472007488-8d47f604f644?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=416049abdd7f2284b0651f00591ce215');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;

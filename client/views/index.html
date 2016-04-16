@@ -44,6 +44,9 @@
           <li ng-show='currentUser' ng-class="{active: isActive('/upload')}"><a href="/upload">Your Profile</a></li>
           <li ng-show='currentUser' ng-controller='logoutController' ng-click='logout()'><a href="#">Logout</a></li>
         </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="navName" ng-show='currentUser'>Logged in as: {{currentUser}}</li>
+        </ul>
       </div><!--/.nav-collapse -->
     </div>
   </nav>
