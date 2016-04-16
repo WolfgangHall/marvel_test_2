@@ -1,68 +1,18 @@
 <div class="container-fluid" id="roomsPage">
   <div class="row">
-
-    <div class="col-md-4">
-      <div class="card">
-        <div class="card-content">
-          <p ng-model="roomName" class="roomCard">{{roomName}}</p>
-        </div>
-        <div class="card-action">
-        <a class="btn sharp btn-block" href="/chat/{{roomName}}">Join {{roomName}} Chat Room</a>
-        </div>
-      </div>
+    <div id="searchRooms">
+      Search for a room: <input class="searchRoomQuery" ng-model="query"></input>
     </div>
-
-    <div class="col-md-4">
-      <div class="card">
-        <div class="card-content">
-          <p ng-model="roomName" class="roomCard">{{roomName2}}</p>
-        </div>
-        <div class="card-action">
-          <a href="/chat/{{roomName2}}" class="btn sharp btn-block">Join {{roomName2}} Chat Room</a>
-        </div>
-      </div>
-    </div>  
-
-    <div class="col-md-4">
-      <div class="card">
-        <div class="card-content">
-          <p ng-model="roomName" class="roomCard">{{roomName3}}</p>
-        </div>
-        <div class="card-action">
-          <a href="/chat/{{roomName3}}" class="btn sharp btn-block">Join {{roomName3}} Chat Room</a>
-        </div>
-      </div>
-    </div>    
-
-    <div class="col-md-4">
-      <div class="card">
-        <div class="card-content">
-          <p ng-model="roomName" class="roomCard">{{roomName4}}</p>
-        </div>
-        <div class="card-action">
-          <a href="/chat/{{roomName4}}" class="btn sharp btn-block">Join {{roomName4}} Chat Room</a>
-        </div>
-      </div>
-    </div>    
-
-    <div class="col-md-4">
-      <div class="card">
-        <div class="card-content">
-          <p ng-model="roomName" class="roomCard">{{roomName5}}</p>
-        </div>
-        <div class="card-action">
-          <a href="/chat/{{roomName5}}" class="btn sharp btn-block">Join {{roomName5}} Chat Room</a>
-        </div>
-      </div>
-    </div>    
-
-    <div class="col-md-4">
-      <div class="card">
-        <div class="card-content">
-          <p ng-model="roomName" class="roomCard">{{roomName6}}</p>
-        </div>
-        <div class="card-action">
-          <a href="/chat/{{roomName6}}" class="btn sharp btn-block">Join {{roomName6}} Chat Room</a>
+    <div ng-repeat='room in rooms | filter:query'>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-content">
+            <p ng-model="roomName" class="roomCard">{{room.name}}</p>
+            <p class="text-center">{{room.description}}</p>
+          </div>
+          <div class="card-action">
+          <a class="btn sharp btn-block" href="/chat/{{room.name}}">Join {{room.name}} Chat Room</a>
+          </div>
         </div>
       </div>
     </div>
