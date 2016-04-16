@@ -7,12 +7,13 @@
   box-sizing: border-box;
   border-radius: 2px;
   background-clip: padding-box;
+  background-color: white;
 }
 .card span.card-title {
-    color: #fff;
-    font-size: 24px;
-    font-weight: 300;
-    text-transform: uppercase;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 300;
+  text-transform: uppercase;
 }
 
 .card .card-image {

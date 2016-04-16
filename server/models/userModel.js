@@ -6,20 +6,25 @@ var Schema = mongoose.Schema;
     username : {
       type: String,
       trim: true,
-      unique: true
+      unique: true,
+      min: 4,
+      max: 12
     },
     created: {
       type: Date,
       default: Date.now()
     },
-    // messages : {
-    //   type: Schema.Types.ObjectId,
-    //   ref: 'Message'
-    // },
-    firstName: String,
-    lastName: String,
-    email: String,
-    password: String
+    email: {
+      type: String,
+      trim: true,
+      unique: true
+    },
+    password: {
+      type: String,
+      trim: true,
+      min: 5,
+      max: 13
+    }
   });
 
 

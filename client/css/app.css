@@ -2,7 +2,80 @@ body {
   margin-top: 50px;
 }
 
+.help-block {
+  color: red;
+}
+
+
+#loginForm {
+  margin-top: 40px;
+}
+
+#registerForm {
+  margin-top: 40px;
+}
+
+.navName{
+  padding-top: 15px;
+  font-size: 120%;
+}
+
+a {
+  color: black;
+  font-size: 120%;
+}
+
+a:visited{
+  text-decoration: none;
+  color: black;
+}
+a:hover{
+  text-decoration: none;
+  color: blue;
+}
+a:active{
+  color: black;
+}
+
+#loginPage{
+  height: 95vh;
+  background-image: url('https://images.unsplash.com/photo-1421749810611-438cc492b581?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=6cf5c5e54ebe49a76b78b7e17ca3dd47');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#registerPage{
+  height: 95vh;
+  background-image: url('https://images.unsplash.com/photo-1417514645232-3042464af1da?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=d80eb9924bebaca87ecf93b6dc50bcbf');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#searchRooms {
+  padding-top: 20px;
+  padding-left: 15px;
+  padding-bottom: 20px;
+  color: white;
+  font-size: 120%;
+}
+
+.searchRoomQuery {
+  color: black;
+  font-size: 110%;
+}
+
+#roomsPage{
+  height: 95vh;
+  background-image: url('https://images.unsplash.com/photo-1434472007488-8d47f604f644?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=416049abdd7f2284b0651f00591ce215');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
 #chat-history {
+  padding-top: 2%;
   height:80vh;
   background-color: black;
   opacity: 0.8;
@@ -22,7 +95,15 @@ body {
 #chat-messages{
   color: #c4c4c4;
   overflow:auto;
-  position: bottom; 
+  position: bottom;
+  margin-bottom: 0.75%;
+}
+
+.usernameChat{
+  font-size: 120%;
+}
+.messageChat{
+  font-size: 105%;
 }
 
 .modal-backdrop {
@@ -30,13 +111,13 @@ body {
 }
 
  .navbar.transparent.navbar-inverse .navbar-inner {
-    border-width: 0px;
-    -webkit-box-shadow: 0px 0px;
-    box-shadow: 0px 0px;
-    background-color: rgba(0,0,0,0.0);
-    background-image: -webkit-gradient(linear, 50.00% 0.00%, 50.00% 100.00%, color-stop( 0% , rgba(0,0,0,0.00)),color-stop( 100% , rgba(0,0,0,0.00)));
-    background-image: -webkit-linear-gradient(270deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
-    background-image: linear-gradient(180deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
+  border-width: 0px;
+  -webkit-box-shadow: 0px 0px;
+  box-shadow: 0px 0px;
+  background-color: rgba(0,0,0,0.0);
+  background-image: -webkit-gradient(linear, 50.00% 0.00%, 50.00% 100.00%, color-stop( 0% , rgba(0,0,0,0.00)),color-stop( 100% , rgba(0,0,0,0.00)));
+  background-image: -webkit-linear-gradient(270deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
+  background-image: linear-gradient(180deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
 }
 
 div.home-img {
@@ -49,8 +130,8 @@ div.home-img {
 }
 
 img.make-it-fit {
-    max-width: 99%;
-    max-height: 99%;
+  max-width: 99%;
+  max-height: 99%;
 }
 
 .btn {

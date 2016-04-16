@@ -12,6 +12,8 @@ angular.module('chatApp').controller('chatController', ['$scope', 'Socket','$coo
 
   $scope.messages = [];
 
+  
+
 
 
 
