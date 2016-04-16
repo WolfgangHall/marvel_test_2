@@ -2,6 +2,36 @@ body {
   margin-top: 50px;
 }
 
+.help-block {
+  color: red;
+}
+
+
+#loginForm {
+  margin-top: 40px;
+}
+
+#registerForm {
+  margin-top: 40px;
+}
+
+a {
+  color: black;
+  font-size: 120%;
+}
+
+a:visited{
+  text-decoration: none;
+  color: black;
+}
+a:hover{
+  text-decoration: none;
+  color: blue;
+}
+a:active{
+  color: black;
+}
+
 #chat-history {
   height:80vh;
   background-color: black;
