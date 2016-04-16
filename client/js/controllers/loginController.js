@@ -5,13 +5,15 @@ angular.module('chatApp').controller('loginController', ['$scope', '$http', '$ro
       .then(function(res){
         $cookies.put('token', res.data.token);
         $cookies.put('currentUser', $scope.username);
+        console.log(res.data.currentUserId);
         $rootScope.token = res.data.token;
         $rootScope.currentUser = $scope.username;
+        $rootScope.currentUserId = res.data.currentUserId;
 
         $scope.username = '';
         $scope.password = '';
-        
         bootbox.alert('Successfully Logged In!');
+
         
         $location.path('/home');
         $window.location.reload();

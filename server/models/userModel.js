@@ -8,7 +8,7 @@ var Schema = mongoose.Schema;
       trim: true,
       unique: true,
       min: 4,
-      max: 12
+      max: 12,
     },
     created: {
       type: Date,
