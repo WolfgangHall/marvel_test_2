@@ -15,6 +15,7 @@ angular.module('chatApp').controller('roomController', ['$scope','$http','$locat
       moderator: $cookies.get('currentUser'),
       description: $scope.roomDescription
     };
+    console.log(newRoom);
     $http.post('/createRoom', newRoom).then(function(){
       $scope.roomName = '';
       $scope.moderator = '';
