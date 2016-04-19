@@ -99,8 +99,10 @@ app.post('/users/register', function(req, res){
       var user = new User({
         email: req.body.email,
         password: hash,
-        username: req.body.username
+        username: req.body.username,
+        userHash: req.body.userHash
       });
+      console.log(user);
 
       user.save(function(err){
         if (err) res.send(err);
@@ -133,7 +135,6 @@ app.get('/')
 app.put('/users/login', function(req, res, next){
 
   User.findOne({username: req.body.username}, function(err, user){
-    console.log(user._id);
     if(user){
       bcrypt.compare(req.body.password, user.password, function(err, result){
         if (result){
