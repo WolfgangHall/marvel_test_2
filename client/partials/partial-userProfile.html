@@ -1,30 +1,36 @@
 
 <div class="container-fluid">
   <div class="row">
-  <!--Sidebar-->
+    <!--Sidebar-->
     <div class="col-md-4">
-    <!--Profile Picture and user Name-->
+      <!--Profile Picture and user Name-->
       <div class="row">
         <div class="col-md-6">
           <div class="row">
+<<<<<<< HEAD
             <div>
               <!-- <img class="img-circle img-responsive" src="https://s3.amazonaws.com/uifaces/faces/twitter/spiltmilkstudio/128.jpg"> -->
               <!-- <img data-jdenticon-hash="ff8adece0631821959f443c9d956fc39"> -->
               <canvas width="80" height="80" data-jdenticon-hash="{{currentUserId}}"></canvas>
+=======
+            <!-- <img class="img-circle img-responsive" src="https://s3.amazonaws.com/uifaces/faces/twitter/spiltmilkstudio/128.jpg"> -->
+            <div>
+            <canvas width="80" height="80" data-jdenticon-hash="ff8adece0631821959f443c9d956fc39"></canvas>
+>>>>>>> c7d63e6f782abac8fb6e99f80171b5a7081ade66
             </div>
           </div>
         </div>
       </div>
-    <!--End Picture and Name-->
-    <!--Upload Picture-->
+      <!--End Picture and Name-->
+      <!--Upload Picture-->
       <form action="/upload" method="POST" enctype="multipart/form-data">
         Select an image to upload:
         <input type="file" name="image"> 
         <button type="submit" class="btn btn-primary btn-block" value="Upload Image">Upload Image</button>
       </form>
-    <!--End Upload Picture-->
+      <!--End Upload Picture-->
     </div>
-  <!--End Sidebar-->  
+    <!--End Sidebar-->  
   </div>
 </div>
 

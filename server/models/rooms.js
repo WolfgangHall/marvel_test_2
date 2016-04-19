@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var RoomsSchema = new Schema({
+var RoomSchema = new Schema({
     created: {
       type: Date,
       default: Date.now()
@@ -11,11 +11,14 @@ var RoomsSchema = new Schema({
       trim: true
     },
     moderator: {
-    type: Schema.Types.ObjectId,
-    ref: 'User'
+      type: String
+    // type: Schema.Types.ObjectId,
+    // ref: 'User'
+    },
+    description: {
+      type: String
     }
 
 });
 
-var Rooms = mongoose.model('Rooms', RoomsSchema);
-module.exports = Rooms;
+module.exports = mongoose.model('Room', RoomSchema);
