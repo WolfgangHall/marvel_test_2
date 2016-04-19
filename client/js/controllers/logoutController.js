@@ -3,6 +3,7 @@ angular.module('chatApp')
     $scope.logout = function(){
       $cookies.remove('token');
       $cookies.remove('currentUser');
+      $cookies.remove('currentUserId');
       $rootScope.token = null;
       $rootScope.currentUser = null;
 

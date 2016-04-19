@@ -5,6 +5,7 @@ angular.module('chatApp').controller('loginController', ['$scope', '$http', '$ro
       .then(function(res){
         $cookies.put('token', res.data.token);
         $cookies.put('currentUser', $scope.username);
+        $cookies.put('currentUserId', res.data.currentUserId);
         console.log(res.data.currentUserId);
         $rootScope.token = res.data.token;
         $rootScope.currentUser = $scope.username;
@@ -22,6 +23,4 @@ angular.module('chatApp').controller('loginController', ['$scope', '$http', '$ro
         bootbox.alert('Bad Login Credentials!');
       });
   }
-
-
 }]);
