@@ -151,3 +151,8 @@ img.make-it-fit {
   text-shadow: 1px 1px #000;
   font-size: 20px;
 }
+
+#user-icon{
+  width: 200px;
+  height: 200px;
+}
