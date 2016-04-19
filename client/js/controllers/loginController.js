@@ -5,8 +5,9 @@ angular.module('chatApp').controller('loginController', ['$scope', '$http', '$ro
       .then(function(res){
         $cookies.put('token', res.data.token);
         $cookies.put('currentUser', $scope.username);
+        var hash = md5($scope.username);
+        // console.log(hash);
         $cookies.put('currentUserId', res.data.currentUserId);
-        console.log(res.data.currentUserId);
         $rootScope.token = res.data.token;
         $rootScope.currentUser = $scope.username;
         $rootScope.currentUserId = res.data.currentUserId;
