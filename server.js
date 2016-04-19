@@ -139,11 +139,12 @@ app.post('/createRoom', function(req, res){
 app.put('/users/login', function(req, res, next){
 
   User.findOne({username: req.body.username}, function(err, user){
+    console.log(user._id);
     if(user){
       bcrypt.compare(req.body.password, user.password, function(err, result){
         if (result){
           var token = jwt.encode(user, JWT_SECRET);
-          return res.json({token : token});
+          return res.json({token : token, currentUserId: user._id});
         } else {
           return res.status(404).json({error: 'Password not found'});
         }
