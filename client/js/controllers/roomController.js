@@ -9,6 +9,16 @@ angular.module('chatApp').controller('roomController', ['$scope','$http','$locat
     //   {'name': 'React JS', 'description': 'Discuss ReactJS projects'}
     // ];
 
+
+  $scope.getRooms = function(){
+      $http.get('/rooms').then(function(response){
+        $scope.roomCount = response.data.length;
+        console.log(response.data.length);
+        console.log(response);
+      });
+
+  };
+
   $scope.createRoom = function(){
     var newRoom = {
       roomName: $scope.roomName,
@@ -24,7 +34,7 @@ angular.module('chatApp').controller('roomController', ['$scope','$http','$locat
 
       bootbox.alert('Sucessfully created Room.');
     });
-  }
+  };
 
 
 }]);

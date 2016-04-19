@@ -8,7 +8,7 @@ var RoomSchema = new Schema({
     },
     roomName : {
       type: String,
-      trim: true
+     
     },
     moderator: {
       type: String

@@ -47,7 +47,7 @@ db.once('open', function() {
 
 var User = require('./server/models/userModel.js');
 var Message = require('./server/models/messageModel.js');
-var Room = require('./server/models/rooms.js')
+var Room = require('./server/models/rooms.js');
 
 
 //Requriements for Picture Upload
@@ -83,6 +83,12 @@ app.use(logger('dev'));
 
 // app.use('/', router);
 app.use(express.static('client'));
+
+app.get('/rooms', function(req,res){
+  Room.find({}, function (err, rooms) {
+       res.json(rooms);
+      });
+    });
 
 //catchall route
 app.get('/*', function(req, res){
@@ -127,7 +133,7 @@ app.post('/createRoom', function(req, res){
 
 //get rooms 
 
-app.get('/')
+
 
 //login route
 app.put('/users/login', function(req, res, next){

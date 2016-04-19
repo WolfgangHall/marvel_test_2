@@ -26,13 +26,13 @@ angular.module('chatApp').controller('chatController', ['$scope', 'Socket','$coo
 
   if($cookies.get('token')){
     $scope.sendMessage = function(msg) {
-      if(msg != null && msg != '' && msg.length <= 140) {
-        Socket.emit('message', {message:msg})
+      if(msg !== null && msg !== '' && msg.length <= 140) {
+        Socket.emit('message', {message:msg});
       } else {
         bootbox.alert("You cannot leave an empty message and it must be less than 140 characters");
       }
       $scope.msg = '';
-    }
+    };
   }
 
 
@@ -63,5 +63,5 @@ angular.module('chatApp').controller('chatController', ['$scope', 'Socket','$coo
 
   $scope.$on('$locationChangeStart', function(event){
     Socket.disconnect(true);
-  })
+  });
 }]);
