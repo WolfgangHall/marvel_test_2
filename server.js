@@ -139,7 +139,7 @@ app.put('/users/login', function(req, res, next){
       bcrypt.compare(req.body.password, user.password, function(err, result){
         if (result){
           var token = jwt.encode(user, JWT_SECRET);
-          return res.json({token : token, currentUserId: user._id});
+          return res.json({token : token, currentUserHash: user.userHash});
         } else {
           return res.status(404).json({error: 'Password not found'});
         }

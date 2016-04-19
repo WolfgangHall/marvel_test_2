@@ -3,7 +3,6 @@ angular.module('chatApp').controller('registerController', ['$scope','$http','$l
 
   $scope.register = function(){
     var hash = md5($scope.username);
-    console.log(hash);
     var newUser = {
       email: $scope.email,
       password: $scope.password,
@@ -15,13 +14,12 @@ angular.module('chatApp').controller('registerController', ['$scope','$http','$l
       $scope.email = '';
       $scope.password = '';
       $scope.username = '';
-      $scope.userHash='';
+      userHash = '';
 
       $location.path('/login');
-
-      bootbox.alert('Sucessfully Registered. Please Log In');
-    });
-  }
+bootbox.alert('Sucessfully Registered. Please Log In');
+});
+}
 
 
 }]);
