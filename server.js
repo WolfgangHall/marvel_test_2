@@ -47,6 +47,7 @@ db.once('open', function() {
 
 var User = require('./server/models/userModel.js');
 var Message = require('./server/models/messageModel.js');
+var Room = require('./server/models/rooms.js')
 
 
 //Requriements for Picture Upload
@@ -110,6 +111,23 @@ app.post('/users/register', function(req, res){
   })
 })
 
+//create rooms route
+app.post('/createRoom', function(req, res){
+  var room = new Room({
+    roomName: req.body.roomName,
+    description: req.body.description,
+    moderator: req.body.moderator
+  });
+
+  room.save(function(err){
+    if (err) res.send(err);
+    return res.send();
+  })
+})
+
+//get rooms 
+
+app.get('/')
 
 //login route
 app.put('/users/login', function(req, res, next){
