@@ -39,19 +39,19 @@ a:active{
 
 #loginPage{
   height: 95vh;
-  background-image: url('https://images.unsplash.com/photo-1421749810611-438cc492b581?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=6cf5c5e54ebe49a76b78b7e17ca3dd47');
+  /*background-image: url('https://images.unsplash.com/photo-1421749810611-438cc492b581?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=6cf5c5e54ebe49a76b78b7e17ca3dd47');*/
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
 }
 
-#registerPage{
+/*#registerPage{
   height: 95vh;
-  background-image: url('https://images.unsplash.com/photo-1417514645232-3042464af1da?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=d80eb9924bebaca87ecf93b6dc50bcbf');
+  background-image: url('/images/registration.jpeg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-}
+}*/
 
 #searchRooms {
   padding-top: 20px;
@@ -172,6 +172,14 @@ img.make-it-fit {
   height: 200px;
 }
 
-#card{
+.card{
   opacity: .8;
+}
+
+.animation{
+  background-image: url('/images/chatgiphy.gif');
+  height: 480px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
