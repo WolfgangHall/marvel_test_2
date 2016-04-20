@@ -147,7 +147,6 @@ app.put('/users/login', function(req, res, next){
     } else {
       return res.status(404).json({error: 'User not found'});
     }
-
   })
 })
 
