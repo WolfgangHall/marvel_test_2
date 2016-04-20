@@ -174,13 +174,12 @@ app.post('/upload', uploading.single('image'), function(req, res) {
 
 
 // var bio = io.of('/bio');
-
-io.on('connection', function(socket){
-
-
   var users = [];
   var username = '';
   var room = '';
+  
+io.on('connection', function(socket){
+
   console.log('a user has connected');
 
 
