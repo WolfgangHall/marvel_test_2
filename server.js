@@ -92,6 +92,12 @@ app.get('/rooms', function(req,res){
       });
     });
 
+app.get('/rooms/{{room.name}}', function(req,res){
+var theRoom = req.params.roomName;
+console.log(theRoom);
+
+});
+
 //catchall route
 app.get('/*', function(req, res){
   res.sendFile(process.cwd() +'/client/views/index.html');
