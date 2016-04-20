@@ -9,23 +9,36 @@ angular.module('chatApp').controller('roomController', ['$scope','$http','$locat
     //   {'name': 'React JS', 'description': 'Discuss ReactJS projects'}
     // ];
 
+
+  $scope.getRooms = function(){
+      $http.get('/rooms').then(function(response){
+        $scope.roomCount = response.data.length;
+        $scope.rooms = response.data;
+        console.log(response.data.length);
+        console.log(response);
+      });
+
+  };
+
   $scope.createRoom = function(){
     var newRoom = {
       roomName: $scope.roomName,
       moderator: $cookies.get('currentUser'),
-      description: $scope.roomDescription
+      description: $scope.roomDescription,
+      roomNameTrim: $scope.roomname
     };
     console.log(newRoom);
     $http.post('/createRoom', newRoom).then(function(){
       $scope.roomName = '';
       $scope.moderator = '';
       $scope.description = '';
+      $scope.roomNameTrim = '';
 
       $location.path('/createRoom');
 
       bootbox.alert('Sucessfully created Room.');
     });
-  }
+  };
 
 
 }]);
