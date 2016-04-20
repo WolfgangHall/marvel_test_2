@@ -24,13 +24,15 @@ angular.module('chatApp').controller('roomController', ['$scope','$http','$locat
     var newRoom = {
       roomName: $scope.roomName,
       moderator: $cookies.get('currentUser'),
-      description: $scope.roomDescription
+      description: $scope.roomDescription,
+      roomNameTrim: $scope.roomname
     };
     console.log(newRoom);
     $http.post('/createRoom', newRoom).then(function(){
       $scope.roomName = '';
       $scope.moderator = '';
       $scope.description = '';
+      $scope.roomNameTrim = '';
 
       $location.path('/createRoom');
 

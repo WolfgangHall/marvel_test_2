@@ -80,7 +80,7 @@ app.use(function(req, res, next) {
 var logger = require('morgan');
 app.use(logger('dev'));
 
-
+ 
 // app.use('/', router);
 app.use(express.static('client'));
 
@@ -120,24 +120,26 @@ app.post('/users/register', function(req, res){
         if (err) res.send(err);
 
         return res.send();
-      })
-    })
-  })
-})
+      });
+    });
+  });
+});
 
 //create rooms route
 app.post('/createRoom', function(req, res){
   var room = new Room({
     roomName: req.body.roomName,
     description: req.body.description,
-    moderator: req.body.moderator
+    moderator: req.body.moderator,
+    roomNameTrim: req.body.roomNameTrim
+
   });
 
   room.save(function(err){
     if (err) res.send(err);
     return res.send();
-  })
-})
+  });
+});
 
 //get rooms 
 
@@ -156,13 +158,13 @@ app.put('/users/login', function(req, res, next){
         } else {
           return res.status(404).json({error: 'Password not found'});
         }
-      })
+      });
     } else {
       return res.status(404).json({error: 'User not found'});
     }
 
-  })
-})
+  });
+});
 
 //route for img upload
 app.post('/upload', uploading.single('image'), function(req, res) { 

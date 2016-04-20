@@ -10,7 +10,12 @@ var RoomSchema = new Schema({
       type: String,
      
     },
-    moderator: {
+    roomNameTrim : {
+    type: String,
+    trim: true 
+
+    },
+    moderator : {
       type: String
     // type: Schema.Types.ObjectId,
     // ref: 'User'
