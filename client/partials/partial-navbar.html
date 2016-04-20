@@ -1,5 +1,5 @@
   <nav class="navbar navbar-fixed-top transparent">
-    <div class="container-fluid">
+    <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
           <span class="sr-only">Toggle navigation</span>
@@ -14,7 +14,7 @@
           <li ng-show='currentUser' ng-class="{active: isActive('/rooms')}"><a href="/rooms">Rooms</a></li>
           <!-- <li ng-class="{active: isActive('/chat/:room')}"><a href="/chat">Chat</a></li> -->
           <li ng-hide='currentUser' ng-class="{active: isActive('/register')}"><a href="/register">Register</a></li>
-          <li ng-hide='currentUser' ng-class="{active: isActive('/login')}"><a href="/login">Login</a></li>
+          <li ng-hide='currentUser' ng-class="{active: isActive('/login')}"><a class="btn" href="/login">Login</a></li>
           <li ng-show='currentUser' ng-class="{active: isActive('/upload')}" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><a href="#">{{currentUser}}</a></li>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
             <li><a href="/upload">My Profile</a></li>

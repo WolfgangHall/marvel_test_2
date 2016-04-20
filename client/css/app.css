@@ -2,6 +2,10 @@ body {
   margin-top: 50px;
 }
 
+.navbar {
+  padding-top: 40px;
+}
+
 .help-block {
   color: red;
 }
