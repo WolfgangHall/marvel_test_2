@@ -21,18 +21,22 @@ angular.module('chatApp').controller('roomController', ['$scope','$http','$locat
   };
 
   $scope.createRoom = function(){
+    var roomName = $scope.roomName;
+    var fuckThis = roomName.replace(/ /g,'');
+    console.log(roomName);
+    console.log(roomNameTrim);
     var newRoom = {
       roomName: $scope.roomName,
       moderator: $cookies.get('currentUser'),
       description: $scope.roomDescription,
-      roomNameTrim: $scope.roomName
+      roomNameTrim: fuckThis
     };
     console.log(newRoom);
     $http.post('/createRoom', newRoom).then(function(){
       $scope.roomName = '';
       $scope.moderator = '';
       $scope.description = '';
-      $scope.roomNameTrim = '';
+      roomNameTrim = '';
 
       $location.path('/createRoom');
 
