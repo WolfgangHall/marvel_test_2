@@ -13,6 +13,7 @@ angular.module('chatApp').controller('roomController', ['$scope','$http','$locat
   $scope.getRooms = function(){
       $http.get('/rooms').then(function(response){
         $scope.roomCount = response.data.length;
+        $scope.rooms = response.data;
         console.log(response.data.length);
         console.log(response);
       });

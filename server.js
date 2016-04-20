@@ -84,6 +84,8 @@ app.use(logger('dev'));
 // app.use('/', router);
 app.use(express.static('client'));
 
+
+
 app.get('/rooms', function(req,res){
   Room.find({}, function (err, rooms) {
        res.json(rooms);
