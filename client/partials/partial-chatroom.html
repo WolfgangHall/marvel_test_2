@@ -9,7 +9,7 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="chat-window col-md-12" id="chat-history" schroll-bottom='messages'>
+    <div class="chat-window col-md-10" id="chat-history" schroll-bottom='messages'>
       <ul>
         <li ng-repeat="message in messages" id="chat-messages">
           <span  class="usernameChat">{{message.username}}:</span>
@@ -17,13 +17,13 @@
         </li>
       </ul>
     </div>
-<!--     <div class="col-md-2" id="user-list">
+    <div class="col-md-2" id="user-list">
       <p>Number of connected users: {{users.length}}</p>
       <ul>
         <li ng-repeat="user in users track by $index">{{user}}</li>
       </ul>
       <div class="fixed"></div>
-    </div> -->
+    </div>
   </div>
   <form>
     <div class="row">
