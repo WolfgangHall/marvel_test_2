@@ -47,7 +47,7 @@ db.once('open', function() {
 
 var User = require('./server/models/userModel.js');
 var Message = require('./server/models/messageModel.js');
-var Room = require('./server/models/rooms.js')
+var Room = require('./server/models/rooms.js');
 
 
 //Requriements for Picture Upload
@@ -80,9 +80,23 @@ app.use(function(req, res, next) {
 var logger = require('morgan');
 app.use(logger('dev'));
 
-
+ 
 // app.use('/', router);
 app.use(express.static('client'));
+
+
+
+app.get('/rooms', function(req,res){
+  Room.find({}, function (err, rooms) {
+       res.json(rooms);
+      });
+    });
+
+app.get('/rooms/{{room.name}}', function(req,res){
+var theRoom = req.params.roomName;
+console.log(theRoom);
+
+});
 
 //catchall route
 app.get('/*', function(req, res){
@@ -108,28 +122,30 @@ app.post('/users/register', function(req, res){
         if (err) res.send(err);
 
         return res.send();
-      })
-    })
-  })
-})
+      });
+    });
+  });
+});
 
 //create rooms route
 app.post('/createRoom', function(req, res){
   var room = new Room({
     roomName: req.body.roomName,
     description: req.body.description,
-    moderator: req.body.moderator
+    moderator: req.body.moderator,
+    roomNameTrim: req.body.roomNameTrim
+
   });
 
   room.save(function(err){
     if (err) res.send(err);
     return res.send();
-  })
-})
+  });
+});
 
 //get rooms 
 
-app.get('/')
+
 
 //login route
 app.put('/users/login', function(req, res, next){
@@ -143,12 +159,18 @@ app.put('/users/login', function(req, res, next){
         } else {
           return res.status(404).json({error: 'Password not found'});
         }
-      })
+      });
     } else {
       return res.status(404).json({error: 'User not found'});
     }
+<<<<<<< HEAD
   })
 })
+=======
+
+  });
+});
+>>>>>>> 7997461c9604d1ecaceff66dd91fa4ef4c129d95
 
 //route for img upload
 app.post('/upload', uploading.single('image'), function(req, res) { 
@@ -157,13 +179,12 @@ app.post('/upload', uploading.single('image'), function(req, res) {
 
 
 // var bio = io.of('/bio');
-
-io.on('connection', function(socket){
-
-
   var users = [];
   var username = '';
   var room = '';
+  
+io.on('connection', function(socket){
+
   console.log('a user has connected');
 
 
