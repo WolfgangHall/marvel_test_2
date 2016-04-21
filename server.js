@@ -163,9 +163,14 @@ app.put('/users/login', function(req, res, next){
     } else {
       return res.status(404).json({error: 'User not found'});
     }
+<<<<<<< HEAD
+  })
+})
+=======
 
   });
 });
+>>>>>>> 7997461c9604d1ecaceff66dd91fa4ef4c129d95
 
 //route for img upload
 app.post('/upload', uploading.single('image'), function(req, res) { 

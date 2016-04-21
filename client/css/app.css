@@ -1,5 +1,9 @@
 body {
-  margin-top: 50px;
+  margin-top: 80px;
+}
+
+.navbar {
+  padding-top: 40px;
 }
 
 .help-block {
@@ -67,8 +71,8 @@ a:active{
 }
 
 #roomsPage{
-  height: 95vh;
-  background-image: url('/images/groupchat2.jpeg');
+  height: 100%;
+  background-color:#009E8E;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
