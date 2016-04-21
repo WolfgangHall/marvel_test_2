@@ -1,5 +1,4 @@
-<div id="roomsPage">
-<div class="container-fluid" data-ng-init="getRooms()">
+<div class="container-fluid" id="roomsPage" data-ng-init="getRooms()">
   <div class="row"> 
     <div id="searchRooms">
       Search for a room: <input class="searchRoomQuery" ng-model="query"></input>
@@ -35,24 +34,16 @@
           <label for="room-name">Room Name</label>
           <input type="roomName" class="form-control" id="room-name" placeholder="Room Name" ng-model="roomName">
         </div>
-        <div class="modal-body">
-         <form>
-          <div class="form-group">
-            <label for="room-name">Room Name</label>
-            <input type="text" class="form-control" id="room-name" placeholder="Room Name" ng-model="roomName">
-          </div>
-          <div class="form-group">
-            <label for="room-description">Room Description</label>
-            <input type="text" class="form-control" id="room-description" placeholder="Describe Your Room" ng-model="roomDescription">
-          </div>
+        <div class="form-group">
+          <label for="room-description">Room Description</label>
+          <input type="text" class="form-control" id="room-description" placeholder="Describe Your Room" ng-model="roomDescription">
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary" ng-click="createRoom()">Create Room</button>
-        </div>
-      </form>
-    </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" ng-click="createRoom()">Create Room</button>
+      </div>
+    </form>
   </div>
-</div>
 </div>
 </div>

@@ -163,8 +163,8 @@ app.put('/users/login', function(req, res, next){
     } else {
       return res.status(404).json({error: 'User not found'});
     }
-  });
-});
+  })
+})
 
 //route for img upload
 app.post('/upload', uploading.single('image'), function(req, res) { 
