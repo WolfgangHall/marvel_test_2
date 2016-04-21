@@ -36,7 +36,7 @@ angular.module('chatApp').controller('chatController', ['$scope', 'Socket','$coo
   }
 
 
-  Socket.emit('request-users', {});
+  
 
 
 
@@ -53,6 +53,7 @@ angular.module('chatApp').controller('chatController', ['$scope', 'Socket','$coo
   Socket.on('add-user', function(data) {
     $scope.users.push(data.username);
     $scope.messages.push({username: data.username, message: 'has arrived'});
+    Socket.emit('request-users', {});
   });
 
   Socket.on('remove-user', function(data){
