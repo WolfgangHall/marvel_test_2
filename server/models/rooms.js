@@ -12,8 +12,6 @@ var RoomSchema = new Schema({
     },
     roomNameTrim : {
     type: String,
-    trim: true 
-
     },
     moderator : {
       type: String

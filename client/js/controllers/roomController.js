@@ -25,7 +25,7 @@ angular.module('chatApp').controller('roomController', ['$scope','$http','$locat
       roomName: $scope.roomName,
       moderator: $cookies.get('currentUser'),
       description: $scope.roomDescription,
-      roomNameTrim: $scope.roomName
+      roomNameTrim: $scope.roomName.replace(/ /g, '')
     };
     console.log(newRoom);
     $http.post('/createRoom', newRoom).then(function(){
