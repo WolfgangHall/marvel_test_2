@@ -1,7 +1,8 @@
 angular.module('chatApp', [
   'ui.router',
   'btford.socket-io',
-  'ngCookies'])
+  'ngCookies',
+  'ngAnimate'])
 .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider){
     $urlRouterProvider.otherwise('/home');
 

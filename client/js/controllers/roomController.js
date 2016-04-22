@@ -24,10 +24,12 @@ angular.module('chatApp').controller('roomController', ['$scope','$http','$locat
       $scope.description = '';
       $scope.roomNameTrim = '';
 
-      $location.path('/createRoom');
-
-      bootbox.alert('Sucessfully created Room.');
+      $location.path('/rooms');
     });
+    $('#roomForm').modal('hide');
+    function(){
+      
+    }
   };
 
 
