@@ -17,7 +17,7 @@
         </li>
       </ul>
     </div>
-    <div class="col-md-2" id="user-list">
+    <div class="col-md-2 hidden-sm-down" id="user-list">
       <p>Number of connected users: {{users.length}}</p>
       <ul>
         <li ng-repeat="user in users track by $index">{{user}}</li>

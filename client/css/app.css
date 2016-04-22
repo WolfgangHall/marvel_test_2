@@ -1,26 +1,10 @@
-body {
+/*body {
   margin-top: 80px;
-}
-
-.navbar {
-  padding-top: 40px;
-}
-
-.dropdown-menu {
-  width: 302px;
-  height: 212px;
-  border-radius: 0;
-  opacity: 0.95;
-}
+}*/
 
 .help-block {
   color: red;
 }
-
-.profile-btn {
-  background-color: #EEEEEE;
-}
-
 
 #loginForm {
   margin-top: 40px;
@@ -81,12 +65,12 @@ a:active{
   font-size: 110%;
 }
 
-#roomsPage{
-  height: 100%;
-  background-color:#009E8E;
-  background-size: cover;
+#rooms-page{
+  height: 100vh;
+  background-color: #4D2422;
+/*  background-size: cover;
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: center center;*/
 }
 
 #chat-history {
@@ -125,6 +109,8 @@ a:active{
   z-index: -1;
 }
 
+/*Navbar Styling*/
+
  .navbar.transparent.navbar-inverse .navbar-inner {
   border-width: 0px;
   -webkit-box-shadow: 0px 0px;
@@ -135,7 +121,11 @@ a:active{
   background-image: linear-gradient(180deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
 }
 
-div.home-img {
+/*#bs-example-navbar-collapse-1{
+  background-color: white;
+}*/
+
+/*div.home-img {
   position: fixed;
   left: 0;
   right: 0;
@@ -151,7 +141,33 @@ div.rooms-img {
   top: 0;
   bottom: 0;
   text-align: center;
+}*/
+
+/*.navbar {
+  padding-top: 40px;
+}*/
+
+/*Dropdown Styling*/
+.dropdown-menu {
+  width: 302px;
+  height: 232px;
+  border-radius: 0;
+  opacity: 0.95;
 }
+
+.profile-btn {
+  background-color: #EEEEEE;
+}
+
+#dropdown-username{
+  font-size: large;
+  padding-bottom: 10px;
+}
+
+/*End Dropdown Styling*/
+
+/*End Navbar Styling*/
+
 
 img.make-it-fit {
   max-width: 99%;
