@@ -1,6 +1,6 @@
-/*body {
+body {
   margin-top: 80px;
-}*/
+}
 
 .help-block {
   color: red;
@@ -109,6 +109,22 @@ a:active{
   z-index: -1;
 }
 
+/*Profile Page Sytling*/
+
+#profile-page {
+  background-color: #127E8D;
+  height: 100vh;
+}
+
+#user-block{
+background-color: #FFD374;
+padding-top: 20px;
+padding-bottom: 20px;
+-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
 /*Navbar Styling*/
 
  .navbar.transparent.navbar-inverse .navbar-inner {
@@ -125,7 +141,7 @@ a:active{
   background-color: white;
 }*/
 
-/*div.home-img {
+div.home-img {
   position: fixed;
   left: 0;
   right: 0;
@@ -141,11 +157,11 @@ div.rooms-img {
   top: 0;
   bottom: 0;
   text-align: center;
-}*/
+}
 
-/*.navbar {
+.navbar {
   padding-top: 40px;
-}*/
+}
 
 /*Dropdown Styling*/
 .dropdown-menu {
