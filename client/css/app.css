@@ -6,8 +6,19 @@ body {
   padding-top: 40px;
 }
 
+.dropdown-menu {
+  width: 302px;
+  height: 212px;
+  border-radius: 0;
+  opacity: 0.95;
+}
+
 .help-block {
   color: red;
+}
+
+.profile-btn {
+  background-color: #EEEEEE;
 }
 
 
@@ -96,11 +107,6 @@ a:active{
   color: #AFCBFF; 
 }
 
-#user-icon{
-  width: 200px;
-  height: 200px;
-}
-
 #chat-messages{
   color: #c4c4c4;
   overflow:auto;
@@ -154,11 +160,12 @@ img.make-it-fit {
 
 .btn {
     text-transform: uppercase;
+    border-radius: 0;
 }
 
-.sharp{
+/*.sharp{
   border-radius:0;
-}
+}*/
  
 .text-box{
   padding: 0;
