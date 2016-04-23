@@ -112,12 +112,13 @@ a:active{
 /*Profile Page Sytling*/
 
 #profile-page {
-  background-color: #127E8D;
+  /*background-color: #5B2727;*/
+  background: linear-gradient(#5B2727, #F6A50F);
   height: 100vh;
 }
 
 #user-block{
-background-color: #FFD374;
+background: linear-gradient(#BC3923, #F6A50F);
 padding-top: 20px;
 padding-bottom: 20px;
 -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
