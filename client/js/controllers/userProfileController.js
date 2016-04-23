@@ -9,11 +9,15 @@ angular.module('chatApp').controller('userProfileController', ['$scope','$http',
     method: "POST",
     url: "/upload",
     data:data
-  }).then(function(result){
+    }).then(function(result){
         console.log(result);
-    });
-  };
-    
+      });
+    };
 
+  // var image = new Image();
+  //   image.src = 'data-jdenticon-hash="{{currentUserHash}}"';
+  //   image.onload = function() {
+  //   context.drawImage(image, 200, 200);
+  // };
 
-  }]);
+}]);
