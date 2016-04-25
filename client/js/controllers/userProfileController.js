@@ -7,13 +7,17 @@ angular.module('chatApp').controller('userProfileController', ['$scope','$http',
         console.log(data);
   $http({
     method: "POST",
-    url: "/upload",
+    url: "/profile",
     data:data
-  }).then(function(result){
+    }).then(function(result){
         console.log(result);
-    });
-  };
-    
+      });
+    };
 
+  // var image = new Image();
+  //   image.src = 'data-jdenticon-hash="{{currentUserHash}}"';
+  //   image.onload = function() {
+  //   context.drawImage(image, 200, 200);
+  // };
 
-  }]);
+}]);
