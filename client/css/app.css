@@ -161,6 +161,7 @@ div.rooms-img {
 
 /*Dropdown Styling*/
 .dropdown-menu {
+  background: linear-gradient(#FFB726, #F6A50F);
   width: 302px;
   height: 232px;
   border-radius: 0;
@@ -168,7 +169,8 @@ div.rooms-img {
 }
 
 .profile-btn {
-  background-color: #EEEEEE;
+  background-color: #4A4948;
+  color: #FFB726;
 }
 
 #dropdown-username{
@@ -216,9 +218,24 @@ img.make-it-fit {
 }
 
 .animation{
-  background-image: url('/images/chatgiphy.gif');
+  background-image: url('/images/bee.gif');
   height: 480px;
   width: 100%;
   background-repeat: no-repeat;
   background-size: 100%;
+  /*This flips the image*/
+  -moz-transform: scale(-1, 1);
+  -webkit-transform: scale(-1, 1);
+  -o-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+}
+
+.nav-bee{
+  background-image: url('/images/bee.png');
+  height: 70px;
+  width: 70px;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-color: transparent;
 }

@@ -7,7 +7,7 @@ angular.module('chatApp').controller('userProfileController', ['$scope','$http',
         console.log(data);
   $http({
     method: "POST",
-    url: "/upload",
+    url: "/profile",
     data:data
     }).then(function(result){
         console.log(result);
