@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  ng-app="chatApp">
+<html lang="en"  ng-app="marvelApp">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,22 +9,39 @@
   <meta name="author" content="">
   <link rel="icon" href="../../favicon.ico">
 
-  <title>AssociateMe</title>
+  <title>Marvel</title>
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css">
-  <link href="../css/app.css" rel="stylesheet">
-  <link href="../css/cards.css" rel="stylesheet">
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
 
   <base href="/" />
 </head>
 
 <body>
-  <div ng-include="'/partials/partial-navbar.html'"></div>
+
+  <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Marvel</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
   <ui-view></ui-view>
 
 
@@ -35,29 +52,10 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.2/angular.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.2/angular-cookies.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.2.5/ui-bootstrap.min.js"></script>
-  <script type="text/javascript" src="../libs/socket.js"></script>
 
   <script src="../js/app.js"></script>
-  <!-- <script src="../js/custom/home.js"></script> -->
-  <script src="../js/custom/scrollbottom.js"></script>
-  <script src="https://cdn.jsdelivr.net/jdenticon/1.3.2/jdenticon.min.js" async></script>
-  <script src="js/custom/md5.min.js"></script>
   <script src="../js/controllers/homeController.js"></script>
-  <script src="../js/controllers/registerController.js"></script>
-  <script src="../js/controllers/roomController.js"></script>
-  <script src="../js/controllers/chatController.js"></script>
-  <script src="../js/controllers/loginController.js"></script>
-  <script src="../js/controllers/logoutController.js"></script>
-  <script src="../js/controllers/userProfileController.js"></script>
-  <script src="../js/services/socketFactory.js"></script>
-  
-  
 
-
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script>
 
 </body>
 </html>

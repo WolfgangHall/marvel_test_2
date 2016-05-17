@@ -1,4 +1,4 @@
-angular.module('chatApp').controller('homeController', ['$http', function($http){
-  var vm = this;
+angular.module('marvelApp').controller('homeController', ['$scope','$http', function($scope, $http){
+  
 
 }]);
