@@ -34,13 +34,15 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/charSelect">Characters</a></li>
+            <li><a href="/comicSelect">Comic</a></li>
+            <li><a href="/seriesSelect">Series</a></li>
+            <li><a href="/storySelect">Story</a></li>
           </ul>
-        </div><!--/.nav-collapse -->
+        </div>
       </div>
-    </nav>
+    </nav> 
 
   <ui-view></ui-view>
 
@@ -52,9 +54,15 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.2/angular.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.2/angular-resource.min.js"></script>
 
   <script src="../js/app.js"></script>
-  <script src="../js/controllers/homeController.js"></script>
+  <!-- <script src="../js/factories/MarvelFactory.js"></script> -->
+  <script src="../js/controllers/homeCtrl.js"></script>
+  <script src="../js/controllers/characterCtrl.js"></script>
+  <script src="../js/controllers/comicCtrl.js"></script>
+  <script src="../js/controllers/seriesCtrl.js"></script>
+  <script src="../js/controllers/storiesCtrl.js"></script>
 
 
 </body>
