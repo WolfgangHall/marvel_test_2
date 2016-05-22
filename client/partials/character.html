@@ -21,28 +21,20 @@
 
   <div class="row" id="comicsResult" ng-if=character.name>
     <h3>Comics featuring {{character.name}}</h3>
-    <ul>
-      <li ng-repeat="comic in character.comics">
-        {{ comic.name }}
-      </li>
-    </ul>
-  </div>  
+    <div class="col-md-3" ng-repeat="comic in character.comicData | limitTo: character.quantity">
+      <h5> {{comic.title}} </h5>
+      <img ng-src="{{comic.thumbnail.path}}/portrait_medium.{{comic.thumbnail.extension}}">
+      <p>{{comic.description}}</p>
+    </div>
+  </div>    
 
-  <div class="row" id="comicsResult" ng-if=character.name>
+  <div class="row" id="eventsResult" ng-if=character.name>
     <h3>Events featuring {{character.name}}</h3>
-    <ul>
-      <li ng-repeat="event in character.events">
-        {{ event.name }}
-      </li>
-    </ul>
-  </div>  
+    <div class="col-md-3" ng-repeat="event in character.eventData | limitTo: character.quantity">
+      <h5> {{event.title}} </h5>
+      <img ng-src="{{event.thumbnail.path}}/portrait_medium.{{event.thumbnail.extension}}">
+      <p>{{event.description}}</p>
+    </div>
+  </div>    
 
-  <div class="row" id="comicsResult" ng-if=character.name>
-    <h3>Series featuring {{character.name}}</h3>
-    <ul>
-      <li ng-repeat="serie in character.series">
-        {{ serie.name }}
-      </li>
-    </ul>
-  </div>
 </div>

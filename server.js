@@ -73,7 +73,7 @@ characterRouter.route('/eventsByHeroId/:heroId')
 
 characterRouter.route('/storiesByHeroId/:heroId')
     .get(function(req, res){
-        marvel.characters.stories('1011334', function(err, results){
+        marvel.characters.stories(req.params.heroId, function(err, results){
             if(err) {
                 return console.error(err);
             } else {
@@ -82,7 +82,7 @@ characterRouter.route('/storiesByHeroId/:heroId')
         });
     });
 
-comicsRouter.route('comicById/:comicId')
+comicsRouter.route('/comicById/:comicId')
     .get(function(req, res){
         marvel.comics.find(req.params.comicId, function(err, results){
             if (err) {
@@ -93,7 +93,7 @@ comicsRouter.route('comicById/:comicId')
         });
     });
 
-seriesRouter.route('seriesByTitle/:seriesTitle')
+seriesRouter.route('/seriesByTitle/:seriesTitle')
     .get(function(req, res){
         marvel.series.findByTitle(req.params.seriesTitle, function(err, results){
             if (err) {
@@ -104,7 +104,7 @@ seriesRouter.route('seriesByTitle/:seriesTitle')
         });
     });
 
-seriesRouter.route('seriesById/:seriesId')
+seriesRouter.route('/seriesById/:seriesId')
     .get(function(req, res){
         marvel.series.find(req.params.seriesId, function(err, results){
             if (err) {
@@ -115,7 +115,7 @@ seriesRouter.route('seriesById/:seriesId')
         });
     });
 
-seriesRouter.route('comicsBySeriesId/:seriesId')
+seriesRouter.route('/comicsBySeriesId/:seriesId')
     .get(function(req, res){
         marvel.series.comics(req.params.seriesId, function(err, results){
             if (err) {
@@ -126,7 +126,7 @@ seriesRouter.route('comicsBySeriesId/:seriesId')
         });
     });
 
-seriesRouter.route('eventsBySeriesId/:seriesId')
+seriesRouter.route('/eventsBySeriesId/:seriesId')
     .get(function(req, res){
         marvel.series.events(req.params.seriesId, function(err, results){
             if (err) {
@@ -137,7 +137,7 @@ seriesRouter.route('eventsBySeriesId/:seriesId')
         });
     });
 
-seriesRouter.route('storiesBySeriesId/:seriesId')
+seriesRouter.route('/storiesBySeriesId/:seriesId')
     .get(function(req, res){
         marvel.series.stories(req.params.seriesId, function(err, results){
             if (err) {
@@ -148,7 +148,7 @@ seriesRouter.route('storiesBySeriesId/:seriesId')
         });
     });
 
-storiesRouter.route('storyById/:storyId')
+storiesRouter.route('/storyById/:storyId')
     .get(function(req, res){
         marvel.stories.find(req.params.storyId, function(err, results){
             if (err) {
@@ -159,7 +159,7 @@ storiesRouter.route('storyById/:storyId')
         });
     });
 
-storiesRouter.route('storyByCharacterId/:charId')
+storiesRouter.route('/storyByCharacterId/:charId')
     .get(function(req, res){
         marvel.stories.character(req.params.charId, function(err, results){
             if (err) {
@@ -169,7 +169,6 @@ storiesRouter.route('storyByCharacterId/:charId')
             }
         });
     });
-
 
 
 app.use('/character', characterRouter);

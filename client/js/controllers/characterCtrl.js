@@ -1,22 +1,24 @@
-angular.module('marvelApp').controller('characterCtrl', ['$http', '$scope', function($http, $scope){
+angular.module('marvelApp').controller('characterCtrl', ['$http', function($http){
 
     var vm = this;
 
     vm.title = 'Search by Character:';
 
     vm.errorMsg = '';
+    vm.comicErrorMsg = '';
+    
     vm.hero = '';
+    vm.heroID = '';
+    
     vm.data;
+    vm.comicData;
+    vm.eventData;
+
+    vm.quantity = 4;
+
     vm.getCharacter = getCharacter;
 
-    // character info
-    vm.name = '';
-    vm.thumbnail = '';
-    vm.description = '';
 
-    vm.comics = [];
-    vm.series = [];
-    vm.events = [];
 
     function getCharacter(hero) {
         $http({
@@ -30,31 +32,15 @@ angular.module('marvelApp').controller('characterCtrl', ['$http', '$scope', func
             vm.data = response.data;
             vm.name = response.data.results.data[0].name;
             vm.description = response.data.results.data[0].description;
+            vm.heroID = response.data.results.data[0].id;
             vm.imgExtension = response.data.results.data[0].thumbnail.extension;
             vm.thumbnail = response.data.results.data[0].thumbnail.path + "/portrait_incredible." + 
                 vm.imgExtension;
 
-            vm.comics.push(response.data.results.data[0].comics.items[0]);
-            vm.comics.push(response.data.results.data[0].comics.items[1]);
-            vm.comics.push(response.data.results.data[0].comics.items[2]);
-            vm.comics.push(response.data.results.data[0].comics.items[3]);
-            vm.comics.push(response.data.results.data[0].comics.items[4]);            
 
-            vm.events.push(response.data.results.data[0].events.items[0]);
-            vm.events.push(response.data.results.data[0].events.items[1]);
-            vm.events.push(response.data.results.data[0].events.items[2]);
-            vm.events.push(response.data.results.data[0].events.items[3]);
-            vm.events.push(response.data.results.data[0].events.items[4]);            
+            getComics(vm.heroID);
+            getEvents(vm.heroID);
 
-            vm.series.push(response.data.results.data[0].series.items[0]);
-            vm.series.push(response.data.results.data[0].series.items[1]);
-            vm.series.push(response.data.results.data[0].series.items[2]);
-            vm.series.push(response.data.results.data[0].series.items[3]);
-            vm.series.push(response.data.results.data[0].series.items[4]);
-
-            console.log(vm.comics);
-
-            console.log(vm.data);
 
         }, function myError(response){
             vm.errorMsg = response.statusText;
@@ -62,6 +48,39 @@ angular.module('marvelApp').controller('characterCtrl', ['$http', '$scope', func
         });
     }
 
-    
+    function getComics(id) {
+        $http({
+            method: "GET",
+            data: {
+                format: 'json'
+            },
+            url: "http://localhost:8080/character/comicsByHeroId/" + id
+        }).then(function mySuccess(response){
+
+            vm.comicData = response.data.results.data;
+
+        }, function myError(response){
+            vm.comicErrorMsg = response.statusText;
+            console.log(vm.comicErrorMsg);
+        });
+    }    
+
+
+    function getEvents(id) {
+        $http({
+            method: "GET",
+            data: {
+                format: 'json'
+            },
+            url: "http://localhost:8080/character/eventsByHeroId/" + id
+        }).then(function mySuccess(response){
+            vm.eventData = response.data.results.data;
+
+        }, function myError(response){
+            vm.eventErrorMsg = response.statusText;
+            console.log(vm.eventErrorMsg);
+        });
+    }    
+
 
 }]);
